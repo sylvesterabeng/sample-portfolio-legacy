@@ -1,0 +1,60 @@
+import * as React from 'react'
+import { styled } from '@components/foundations'
+import { ButtonWrapper } from '@components/elements'
+import { Socials } from '@components/blocks'
+
+const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  position: fixed;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: ${p => p.theme.color.neutral['100']};
+  z-index: ${p => p.theme.elevation.BACKDROP};
+`
+
+const NavWrap = styled.div`
+  margin-bottom: ${p => p.theme.spacing(10)};
+`
+
+const NavItem = styled.span``
+
+const Nav = styled.div`
+  font-size: ${p => p.theme.font.size.xxxxl};
+  color ${p => p.theme.color.neutral['500']};
+  transition: color 300ms cubic-bezier(0.2, 0, 0, 1);
+    
+  :hover{
+    color ${p => p.theme.color.brand.primary};
+  }
+  
+  :not(:last-child) {
+    margin-bottom: ${p => p.theme.spacing(2)};
+  }
+  ${NavItem} +  ${NavItem} {
+    margin-left: ${p => p.theme.spacing(6)};
+  }
+`
+
+const Menu = () => {
+  const navItems = ['Home', 'Photography', 'Designs', 'Blog']
+  return (
+    <Container>
+      <NavWrap>
+        {navItems.map((n, idx) => (
+          <ButtonWrapper>
+            <Nav>
+              <NavItem>{'0' + (idx + 1)}</NavItem>
+              <NavItem>{n}</NavItem>
+            </Nav>
+          </ButtonWrapper>
+        ))}
+      </NavWrap>
+      <Socials />
+    </Container>
+  )
+}
+
+export default Menu
