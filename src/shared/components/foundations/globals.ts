@@ -33,9 +33,9 @@ html {
   overflow-y: scroll;
 }
 body {
-  min-height: 100vh;
+  overflow: hidden;
   text-rendering: optimizeSpeed;
-  font-family: ${theme.font.family.primary};
+  font-family: ${theme.font.family.base};
   line-height: 1.65;
 }
 ul[class],

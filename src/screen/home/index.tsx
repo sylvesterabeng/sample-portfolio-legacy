@@ -5,8 +5,6 @@ import Banner from './banner'
 import Introduction from './introduction'
 
 const Container = styled.div`
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   background: ${p => p.theme.color.neutral['100']};

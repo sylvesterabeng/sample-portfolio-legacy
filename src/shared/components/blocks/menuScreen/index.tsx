@@ -44,12 +44,10 @@ const Menu = () => {
     <Container>
       <NavWrap>
         {navItems.map((n, idx) => (
-          <ButtonWrapper>
-            <Nav>
-              <NavItem>{'0' + (idx + 1)}</NavItem>
-              <NavItem>{n}</NavItem>
-            </Nav>
-          </ButtonWrapper>
+          <Nav key={idx}>
+            <NavItem>{'0' + (idx + 1)}</NavItem>
+            <NavItem>{n}</NavItem>
+          </Nav>
         ))}
       </NavWrap>
       <Socials />

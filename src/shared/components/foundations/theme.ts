@@ -9,7 +9,6 @@ const breakpoints = {
 }
 
 enum Elevation {
-  HERO = 1,
   BACKDROP,
   HEADER,
 }
@@ -44,6 +43,7 @@ export interface ITheme {
   spacing: (...args: number[]) => string
   shape: {
     radius: {
+      sm: string
       rg: string
       lg: string
     }
@@ -61,7 +61,8 @@ export interface ITheme {
       hero: string
     }
     family: {
-      primary: string
+      brand: string
+      base: string
     }
   }
 }
@@ -83,7 +84,9 @@ const spacing = (...args: number[]): string => {
   }
 }
 
-const baseFontFamily = '"Noto Serif Japanese", serif, san-serif;'
+const primaryFontFamily =
+  '"Bellefair", "Noto Serif Japanese", serif, san-serif;'
+const secondaryFontFamily = '"Noto Serif Japanese", serif, san-serif;'
 
 export const theme: ITheme = {
   color: {
@@ -115,6 +118,7 @@ export const theme: ITheme = {
   spacing,
   shape: {
     radius: {
+      sm: '3px',
       rg: '8px',
       lg: '16px',
     },
@@ -130,10 +134,11 @@ export const theme: ITheme = {
       xxl: '2.441rem',
       xxxl: '3.052rem',
       xxxxl: '3.815rem',
-      hero: '80px',
+      hero: '144px',
     },
     family: {
-      primary: `${baseFontFamily}`,
+      brand: `${primaryFontFamily}`,
+      base: `${secondaryFontFamily}`,
     },
   },
 }

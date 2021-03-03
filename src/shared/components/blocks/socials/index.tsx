@@ -8,19 +8,20 @@ import {
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons'
 
+const SocialItem = styled.a`
+  color: ${p => p.theme.color.neutral['500']};
+`
+
 const Container = styled.div`
   display: flex;
   align-items: center;
-  > button {
+  > ${SocialItem} {
     :not(:last-child) {
       margin-right: ${p => p.theme.spacing(3)};
     }
   }
 `
 
-const SocialItem = styled.a`
-  color: ${p => p.theme.color.neutral['500']};
-`
 const Icon = styled(FontAwesomeIcon)`
   font-size: ${p => p.theme.font.size.lg};
 `
@@ -34,11 +35,9 @@ const Socials = () => {
   return (
     <Container>
       {sns.map((s, idx) => (
-        <ButtonWrapper key={idx}>
-          <SocialItem href={s.url} target="_blank" rel="noreferrer">
-            <Icon icon={s.icon} />
-          </SocialItem>
-        </ButtonWrapper>
+        <SocialItem key={idx} href={s.url} target="_blank" rel="noreferrer">
+          <Icon icon={s.icon} />
+        </SocialItem>
       ))}
     </Container>
   )
