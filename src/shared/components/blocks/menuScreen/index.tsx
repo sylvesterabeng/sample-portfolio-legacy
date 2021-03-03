@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled } from '@components/foundations'
+import { media, styled } from '@components/foundations'
 import { ButtonWrapper } from '@components/elements'
 import { Socials } from '@components/blocks'
 
@@ -22,7 +22,7 @@ const NavWrap = styled.div`
 const NavItem = styled.span``
 
 const Nav = styled.div`
-  font-size: ${p => p.theme.font.size.xxxxl};
+  font-size: ${p => p.theme.font.size.xxl};
   color ${p => p.theme.color.neutral['500']};
   transition: color 300ms cubic-bezier(0.2, 0, 0, 1);
     
@@ -35,6 +35,10 @@ const Nav = styled.div`
   }
   ${NavItem} +  ${NavItem} {
     margin-left: ${p => p.theme.spacing(6)};
+  }
+  
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.xxxxl};
   }
 `
 

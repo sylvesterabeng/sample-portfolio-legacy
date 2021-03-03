@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled, theme } from '@components/foundations'
+import { media, styled, theme } from '@components/foundations'
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 
@@ -8,39 +8,103 @@ const Container = styled.div`
   display: flex;
   min-height: 320px;
   align-items: center;
-  padding: ${p => p.theme.spacing(0, 8)};
+  padding: ${p => p.theme.spacing(0, 3)};
   border-radius: ${p => p.theme.shape.radius.rg};
+
+  ${media.lg} {
+    padding: ${p => p.theme.spacing(0, 5)};
+  }
+
+  ${media.xl} {
+    padding: ${p => p.theme.spacing(0, 8)};
+  }
 `
 
 const Hero = styled.div`
   display: flex;
-  align-items: flex-end;
-  margin-top: ${p => p.theme.spacing(8)};
+  flex-direction: column;
+  margin-top: ${p => p.theme.spacing(3)};
+
+  ${media.lg} {
+    flex-direction: row;
+    align-items: flex-end;
+    margin-top: ${p => p.theme.spacing(8)};
+  }
 `
 
 const RightPane = styled.div`
-  margin-bottom: ${p => p.theme.spacing(8)};
-  margin-right: ${p => p.theme.spacing(15)};
+  display: flex;
+  flex-direction: column-reverse;
+
+  ${media.lg} {
+    flex-direction: column;
+    margin-bottom: ${p => p.theme.spacing(8)};
+    margin-right: ${p => p.theme.spacing(10)};
+  }
+
+  ${media.xl} {
+    margin-right: ${p => p.theme.spacing(15)};
+  }
 `
 
 const Name = styled.div`
+  display: flex;
+  flex-direction: column;
   line-height: 1.15;
-  margin-bottom: ${p => p.theme.spacing(5)};
-  font-size: ${p => p.theme.font.size.hero};
   color: ${p => p.theme.color.neutral['500']};
   font-family: ${p => p.theme.font.family.brand};
+  font-size: 18vw;
+
+  ${media.md} {
+    flex-direction: row;
+    font-size: 12vw;
+
+    span {
+      white-space: pre;
+    }
+  }
+
+  ${media.lg} {
+    flex-direction: column;
+    font-size: ${p => p.theme.font.size.heroLg};
+    margin-bottom: ${p => p.theme.spacing(5)};
+
+    span {
+      white-space: initial;
+    }
+  }
+
+  ${media.xl} {
+    font-size: ${p => p.theme.font.size.heroXl};
+  }
 `
 
 const SlideWrap = styled.div`
   display: flex;
+  max-width: 240px;
   align-items: center;
-  max-width: 360px;
+  white-space: nowrap;
+  margin-bottom: ${p => p.theme.spacing(2)};
+
+  ${media.md} {
+    max-width: 360px;
+    margin-bottom: ${p => p.theme.spacing(3)};
+  }
+
+  ${media.lg} {
+    margin-bottom: 0;
+  }
 `
 
 const Circle = styled(CircularProgressbar)`
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   font-family: ${p => p.theme.font.family.brand};
+
+  ${media.md} {
+    width: 56px;
+    height: 56px;
+  }
 `
 
 const Line = styled.div`
@@ -51,20 +115,38 @@ const Line = styled.div`
 `
 
 const SlideTitle = styled.div`
-  font-size: ${p => p.theme.font.size.md};
+  font-size: ${p => p.theme.font.size.rg};
   color: ${p => p.theme.color.neutral['400']};
   font-family: ${p => p.theme.font.family.brand};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.md};
+  }
 `
 
 const ImgWrap = styled.div`
-  margin-right: ${p => p.theme.spacing(8)};
+  margin-bottom: ${p => p.theme.spacing(2)};
+
+  ${media.md} {
+    margin-bottom: ${p => p.theme.spacing(5)};
+  }
+
+  ${media.lg} {
+    margin-bottom: 0;
+    margin-right: ${p => p.theme.spacing(8)};
+  }
 `
 
 const Img = styled.img`
-  height: 80vh;
-  min-height: 320px;
+  min-height: 240px;
+  height: 50vh;
+  width: 100vw;
   object-fit: cover;
   border-radius: ${p => p.theme.shape.radius.sm};
+
+  ${media.lg} {
+    height: 80vh;
+  }
 `
 
 const Banner = () => {
@@ -76,9 +158,8 @@ const Banner = () => {
         </ImgWrap>
         <RightPane>
           <Name>
-            Sylvester
-            <br />
-            Abeng
+            <span>Sylvester </span>
+            <span>Abeng</span>
           </Name>
           <SlideWrap>
             <Circle

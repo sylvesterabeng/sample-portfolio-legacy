@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { styled } from '@components/foundations'
+import { media, styled } from '@components/foundations'
 import { Socials } from '@components/blocks'
 
 const Container = styled.div`
@@ -7,7 +7,11 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: ${p => p.theme.spacing(50, 0)};
+  padding: ${p => p.theme.spacing(15, 0)};
+
+  ${media.md} {
+    padding: ${p => p.theme.spacing(50, 0)};
+  }
 `
 
 const TextWrap = styled.div`
@@ -19,9 +23,13 @@ const TextWrap = styled.div`
 `
 
 const Text = styled.p`
-  font-size: ${p => p.theme.font.size.md};
+  font-size: ${p => p.theme.font.size.rg};
   :not(:last-child) {
     margin-bottom: ${p => p.theme.spacing(1)};
+  }
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.md};
   }
 `
 

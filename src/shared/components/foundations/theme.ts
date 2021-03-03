@@ -58,7 +58,8 @@ export interface ITheme {
       xxl: string
       xxxl: string
       xxxxl: string
-      hero: string
+      heroLg: string
+      heroXl: string
     }
     family: {
       brand: string
@@ -134,7 +135,8 @@ export const theme: ITheme = {
       xxl: '2.441rem',
       xxxl: '3.052rem',
       xxxxl: '3.815rem',
-      hero: '144px',
+      heroLg: '120px',
+      heroXl: '136px',
     },
     family: {
       brand: `${primaryFontFamily}`,
