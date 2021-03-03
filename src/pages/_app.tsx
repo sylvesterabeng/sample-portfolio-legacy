@@ -3,7 +3,7 @@ import App from 'next/app'
 import Head from 'next/head'
 import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
-import dynamic from 'next/dynamic'
+import 'react-circular-progressbar/dist/styles.css'
 import { theme, GlobalStyle, ThemeProvider } from '@components/foundations'
 
 config.autoAddCss = false
@@ -11,9 +11,6 @@ config.autoAddCss = false
 class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
-    const AnimatedCursor = dynamic(() => import('react-animated-cursor'), {
-      ssr: false,
-    }) as any
     return (
       <>
         <Head>
@@ -22,7 +19,7 @@ class MyApp extends App {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <title>Sylvester Abeng</title>
           <link
-            href="https://fonts.googleapis.com/css?family=Noto+Serif+JP:300,400,500,700&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Bellefair&family=Noto+Serif+JP:wght@300;400;500;700&display=swap"
             rel="stylesheet"
           />
           <link rel="icon" href="/images/favicon.ico" />
@@ -31,14 +28,6 @@ class MyApp extends App {
           <GlobalStyle />
           <Component {...pageProps} />
         </ThemeProvider>
-        <AnimatedCursor
-          innerSize={8}
-          outerSize={8}
-          color="50, 75, 75"
-          outerAlpha={0.2}
-          innerScale={0.7}
-          outerScale={5}
-        />
       </>
     )
   }
