@@ -9,7 +9,7 @@ const breakpoints = {
 }
 
 enum Elevation {
-  BACKDROP,
+  BACKDROP = 1,
   HEADER,
 }
 
