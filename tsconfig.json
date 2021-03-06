@@ -17,6 +17,7 @@
     "paths": {
       "@utils/*": ["shared/utils/*"],
       "@components/*": ["shared/components/*"],
+      "@entities/*": ["shared/entities/*"],
       "@pages/*": ["pages/*"],
       "@screens/*": ["screens/*"],
       "@interfaces/*": ["interfaces/*"],

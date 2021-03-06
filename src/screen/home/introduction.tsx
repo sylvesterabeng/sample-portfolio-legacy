@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { media, styled } from '@components/foundations'
 import { Socials } from '@components/blocks'
+import { FunctionComponent } from 'react'
 
 const Container = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ const Text = styled.p`
   }
 `
 
-const Introduction = () => {
+const Introduction: FunctionComponent = () => {
   return (
     <Container>
       <TextWrap>

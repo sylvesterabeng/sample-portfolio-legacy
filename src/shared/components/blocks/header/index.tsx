@@ -4,6 +4,7 @@ import ScrollLock from 'react-scrolllock'
 import Link from 'next/link'
 import { media, styled } from '@components/foundations'
 import { MenuScreen } from '@components/blocks'
+import { FunctionComponent } from 'react'
 
 const Container = styled.div`
   width: 100%;
@@ -38,7 +39,7 @@ const Button = styled.span`
   }
 `
 
-const Index = () => {
+const Header: FunctionComponent = () => {
   const [menuIsOpened, setMenuIsOpened] = React.useState(false)
 
   const handleMenuClick = () => {
@@ -64,4 +65,4 @@ const Index = () => {
   )
 }
 
-export default Index
+export default Header

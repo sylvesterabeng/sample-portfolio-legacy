@@ -2,22 +2,14 @@ import * as React from 'react'
 import { media, styled, theme } from '@components/foundations'
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
+import { FunctionComponent } from 'react'
 
 const Container = styled.div`
   height: 100vh;
   display: flex;
   min-height: 320px;
   align-items: center;
-  padding: ${p => p.theme.spacing(0, 3)};
   border-radius: ${p => p.theme.shape.radius.rg};
-
-  ${media.lg} {
-    padding: ${p => p.theme.spacing(0, 5)};
-  }
-
-  ${media.xl} {
-    padding: ${p => p.theme.spacing(0, 8)};
-  }
 `
 
 const Hero = styled.div`
@@ -149,7 +141,7 @@ const Img = styled.img`
   }
 `
 
-const Banner = () => {
+const Banner: FunctionComponent = () => {
   return (
     <Container>
       <Hero>

@@ -2,6 +2,7 @@ import * as React from 'react'
 import { media, styled } from '@components/foundations'
 import { ButtonWrapper } from '@components/elements'
 import { Socials } from '@components/blocks'
+import { FunctionComponent } from 'react'
 
 const Container = styled.div`
   width: 100%;
@@ -42,7 +43,7 @@ const Nav = styled.div`
   }
 `
 
-const Menu = () => {
+const Menu: FunctionComponent = () => {
   const navItems = ['Home', 'Photography', 'Designs', 'Blog']
   return (
     <Container>
