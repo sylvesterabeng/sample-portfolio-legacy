@@ -7,6 +7,7 @@ import {
   faInstagramSquare,
   faTwitter,
 } from '@fortawesome/free-brands-svg-icons'
+import { FunctionComponent } from 'react'
 
 const SocialItem = styled.a`
   color: ${p => p.theme.color.neutral['500']};
@@ -26,7 +27,7 @@ const Icon = styled(FontAwesomeIcon)`
   font-size: ${p => p.theme.font.size.lg};
 `
 
-const Socials = () => {
+const Socials: FunctionComponent = () => {
   const sns = [
     { icon: faFacebook, url: 'https://example.com' },
     { icon: faTwitter, url: 'https://example.com' },

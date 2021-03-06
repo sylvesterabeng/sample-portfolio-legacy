@@ -76,9 +76,4 @@ img:not([alt]) {
     scroll-behavior: auto !important;
   }
 }
-@font-face {
-  font-family: "AmalfiCoast";
-  src: url("/fonts/amalfi-coast.ttf") format("truetype");
-  font-display: swap;
-}
 `
