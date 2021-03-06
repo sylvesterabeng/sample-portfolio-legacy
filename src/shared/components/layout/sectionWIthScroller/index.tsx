@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { media, styled } from '@components/foundations'
-import ScrollContainer from 'react-indiana-drag-scroll'
+import { default as IndianaScroll } from 'react-indiana-drag-scroll'
 import { FunctionComponent } from 'react'
 import { BasicLayout } from '@components/layout'
 import { SectionLabel } from '@entities/index'
@@ -12,6 +12,10 @@ interface Props {
 const Container = styled.div`
   width: 100vw;
   justify-content: center;
+`
+
+const ScrollContainer = styled(IndianaScroll)`
+  overflow: auto;
 `
 
 const Label = styled.div`

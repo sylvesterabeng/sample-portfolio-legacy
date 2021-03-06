@@ -31,6 +31,7 @@ const Slide = styled.div`
   position: relative;
   margin-right: 10vw;
   justify-content: center;
+  cursor: pointer;
 
   :nth-child(4n + 1) {
     ${Label} {
@@ -106,7 +107,7 @@ const Photography: FunctionComponent = () => {
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
       {slides.map((s, idx) => (
-        <Slide key={idx}>
+        <Slide key={idx} onClick={() => console.log('clicked ' + idx)}>
           <Img
             src="images/banner.png"
             alt="photography-slide"
