@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { styled } from '@components/foundations'
-import { ButtonWrapper } from '@components/elements'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faFacebook,
