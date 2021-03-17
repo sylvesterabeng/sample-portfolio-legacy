@@ -9,7 +9,7 @@ const breakpoints = {
 }
 
 enum Elevation {
-  BACKDROP,
+  BACKDROP = 1,
   HEADER,
 }
 
@@ -85,9 +85,8 @@ const spacing = (...args: number[]): string => {
   }
 }
 
-const primaryFontFamily =
-  '"Bellefair", "Noto Serif Japanese", serif, san-serif;'
-const secondaryFontFamily = '"Noto Serif Japanese", serif, san-serif;'
+const brandFontFamily = '"Bellefair", "Noto Serif Japanese", serif, san-serif;'
+const primaryFontFamily = '"Noto Serif Japanese", serif, san-serif;'
 
 export const theme: ITheme = {
   color: {
@@ -139,8 +138,8 @@ export const theme: ITheme = {
       heroXl: '136px',
     },
     family: {
-      brand: `${primaryFontFamily}`,
-      base: `${secondaryFontFamily}`,
+      brand: `${brandFontFamily}`,
+      base: `${primaryFontFamily}`,
     },
   },
 }

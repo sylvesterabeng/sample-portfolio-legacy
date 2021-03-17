@@ -8,7 +8,7 @@ import { theme, GlobalStyle, ThemeProvider } from '@components/foundations'
 
 config.autoAddCss = false
 
-class MyApp extends App {
+export default class MyApp extends App {
   render() {
     const { Component, pageProps } = this.props
     return (
@@ -32,5 +32,3 @@ class MyApp extends App {
     )
   }
 }
-
-export default MyApp
