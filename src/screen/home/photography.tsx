@@ -5,7 +5,7 @@ import { SectionWithScroller } from '@components/layout'
 import { PhotographySlide, SectionLabel } from '@entities/index'
 
 const Img = styled.img`
-  width: 60vw;
+  width: 75vw;
   height: 100%;
 `
 
