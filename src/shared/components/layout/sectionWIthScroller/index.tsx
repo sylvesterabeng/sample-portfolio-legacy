@@ -15,7 +15,7 @@ const Container = styled.div`
 `
 
 const ScrollContainer = styled(IndianaScroll)`
-  overflow: auto;
+  overflow: auto !important;
 `
 
 const Label = styled.div`
@@ -58,6 +58,7 @@ const Scroller = styled.div`
     padding: ${p => p.theme.spacing(5, 0)};
   }
 `
+
 const SectionWithScroller: FunctionComponent<Props> = ({
   sectionLabel,
   children,

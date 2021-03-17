@@ -7,4 +7,5 @@ export interface SectionLabel {
 export interface PhotographySlide {
   name: String
   src: String
+  label: String
 }

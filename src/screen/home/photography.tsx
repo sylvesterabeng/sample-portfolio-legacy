@@ -5,7 +5,7 @@ import { SectionWithScroller } from '@components/layout'
 import { PhotographySlide, SectionLabel } from '@entities/index'
 
 const Img = styled.img`
-  width: 70vw;
+  width: 60vw;
   height: 100%;
 `
 
@@ -81,39 +81,41 @@ const Photography: FunctionComponent = () => {
     {
       name: 'photography-slide',
       src: 'images/banner.png',
+      label: '鎌倉フォトウォーク',
     },
     {
-      name: 'photography-slide',
-      src: 'images/banner.png',
+      name: 'photography-slide2',
+      src: 'images/jomyoji.png',
+      label: '浄妙寺',
     },
     {
-      name: 'photography-slide',
-      src: 'images/banner.png',
+      name: 'photography-slide3',
+      src: 'images/bungakukan.png',
+      label: '鎌倉文学館',
     },
     {
-      name: 'photography-slide',
+      name: 'photography-slide4',
       src: 'images/banner.png',
+      label: '鎌倉フォトウォーク',
     },
     {
-      name: 'photography-slide',
-      src: 'images/banner.png',
+      name: 'photography-slide5',
+      src: 'images/jomyoji.png',
+      label: '浄妙寺',
     },
     {
-      name: 'photography-slide',
-      src: 'images/banner.png',
+      name: 'photography-slide6',
+      src: 'images/bungakukan.png',
+      label: '鎌倉文学館',
     },
   ]
 
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
       {slides.map((s, idx) => (
-        <Slide key={idx} onClick={() => console.log('clicked ' + idx)}>
-          <Img
-            src="images/banner.png"
-            alt="photography-slide"
-            draggable="false"
-          />
-          <Label>鎌倉フォトウォーク</Label>
+        <Slide key={idx}>
+          <Img src={s.src} alt={s.name} draggable="false" />
+          <Label>{s.label}</Label>
         </Slide>
       ))}
     </SectionWithScroller>
