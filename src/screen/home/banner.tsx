@@ -1,8 +1,13 @@
 import * as React from 'react'
 import { media, styled, theme } from '@components/foundations'
 
-import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from 'react-circular-progressbar'
 import { FunctionComponent, useEffect } from 'react'
+// @ts-ignore
+import { useTransition, animated, config } from 'react-spring'
 
 interface CircleProps {
   timer: number
@@ -100,12 +105,15 @@ const SlideWrap = styled.div`
   }
 `
 
-const Circle = styled(CircularProgressbar)`
+const Circle = styled(CircularProgressbarWithChildren)`
   min-width: 40px;
   min-height: 40px;
   width: 40px;
   height: 40px;
   font-family: ${p => p.theme.font.family.brand};
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   ${media.md} {
     min-width: 56px;
@@ -122,11 +130,29 @@ const Circle = styled(CircularProgressbar)`
   }
 `
 
+const CircleIndex = styled.span`
+  font-size: ${p => p.theme.font.size.sm};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.rg};
+  }
+`
+
+const AnimatedCircleIndex = animated(CircleIndex)
+
 const Line = styled.div`
-  flex: 1;
   min-width: 16px;
+  width: 16px;
   margin: ${p => p.theme.spacing(0, 2)};
   border-top: 1px solid ${p => p.theme.color.neutral['400']};
+
+  ${media.md} {
+    flex: 1;
+  }
+`
+
+const SlideTitleWrap = styled.div`
+  position: relative;
 `
 
 const SlideTitle = styled.div`
@@ -139,7 +165,10 @@ const SlideTitle = styled.div`
   }
 `
 
+const AnimatedSlideTitle = animated(SlideTitle)
+
 const ImgWrap = styled.div`
+  position: relative;
   margin-bottom: ${p => p.theme.spacing(2)};
 
   ${media.md} {
@@ -158,20 +187,22 @@ const Img = styled.img`
   width: 100vw;
   object-fit: cover;
   border-radius: ${p => p.theme.shape.radius.sm};
-
   ${media.lg} {
     height: 80vh;
   }
 `
 
+const AnimatedImg = animated(Img)
+
 const Banner: FunctionComponent = () => {
+  const maxTimer = 7
   const [timer, setTimer] = React.useState(0)
   const [slide, setSlide] = React.useState(0)
 
   useEffect(() => {
     if (timer === 8) {
       setTimer(0)
-      slide === data.length - 1 ? setSlide(0) : setSlide(slide + 1)
+      slide === slides.length - 1 ? setSlide(0) : setSlide(slide + 1)
     }
     const intervalId = setInterval(() => {
       setTimer(timer + 1)
@@ -180,7 +211,7 @@ const Banner: FunctionComponent = () => {
     return () => clearInterval(intervalId)
   }, [timer])
 
-  const data = [
+  const slides = [
     {
       id: '01',
       src: 'images/garden-house.png',
@@ -208,11 +239,25 @@ const Banner: FunctionComponent = () => {
     },
   ]
 
+  const transitions = useTransition(slides[slide], item => item.id, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0, position: 'absolute' },
+    config: config.slow,
+  })
+
   return (
     <Container>
       <Hero>
         <ImgWrap>
-          <Img src={data[slide].src} alt={data[slide].desc} />
+          {transitions.map(({ item, props, key }) => (
+            <AnimatedImg
+              key={key}
+              src={item.src}
+              alt={item.desc}
+              style={{ ...props }}
+            />
+          ))}
         </ImgWrap>
         <RightPane>
           <Name>
@@ -223,8 +268,7 @@ const Banner: FunctionComponent = () => {
             <Circle
               timer={timer}
               value={timer}
-              maxValue={7}
-              text={data[slide].id}
+              maxValue={maxTimer}
               strokeWidth={4}
               styles={buildStyles({
                 pathTransitionDuration: 1,
@@ -233,9 +277,21 @@ const Banner: FunctionComponent = () => {
                 trailColor: 'transparent',
                 strokeLinecap: 'butt',
               })}
-            />
+            >
+              {transitions.map(({ item, props, key }) => (
+                <AnimatedCircleIndex key={key} style={{ ...props }}>
+                  {item.id}
+                </AnimatedCircleIndex>
+              ))}
+            </Circle>
             <Line />
-            <SlideTitle>{data[slide].desc}</SlideTitle>
+            <SlideTitleWrap>
+              {transitions.map(({ item, props, key }) => (
+                <AnimatedSlideTitle key={key} style={{ ...props }}>
+                  {item.desc}
+                </AnimatedSlideTitle>
+              ))}
+            </SlideTitleWrap>
           </SlideWrap>
         </RightPane>
       </Hero>
