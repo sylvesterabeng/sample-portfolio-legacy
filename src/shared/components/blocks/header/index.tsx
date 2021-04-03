@@ -56,7 +56,7 @@ const Header: FunctionComponent = () => {
           icon={menuIsOpened ? faTimes : faBars}
           onClick={handleMenuClick}
         >
-          Menu
+          {menuIsOpened ? 'Close' : 'Menu'}
         </Button>
       </Container>
       {menuIsOpened && <MenuScreen />}

@@ -2,7 +2,7 @@ import * as React from 'react'
 import { media, styled, theme } from '@components/foundations'
 
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
-import { FunctionComponent } from 'react'
+import { FunctionComponent, useEffect } from 'react'
 
 const Container = styled.div`
   height: 100vh;
@@ -97,11 +97,17 @@ const Circle = styled(CircularProgressbar)`
     width: 56px;
     height: 56px;
   }
+
+  .CircularProgressbar-path {
+    transition-timing-function: linear;
+    transition-duration: 1s !important;
+    animation-direction: alternate;
+  }
 `
 
 const Line = styled.div`
   flex: 1;
-  min-width: 40px;
+  width: 40px;
   margin: ${p => p.theme.spacing(0, 2)};
   border-top: 1px solid ${p => p.theme.color.neutral['400']};
 `
@@ -142,11 +148,49 @@ const Img = styled.img`
 `
 
 const Banner: FunctionComponent = () => {
+  const [timer, setTimer] = React.useState(0)
+  const [slide, setSlide] = React.useState(0)
+
+  useEffect(() => {
+    if (timer === 8) {
+      setTimer(0)
+      slide === 3 ? setSlide(0) : setSlide(slide + 1)
+    }
+    const intervalId = setInterval(() => {
+      setTimer(timer + 1)
+    }, 1000)
+
+    return () => clearInterval(intervalId)
+  }, [timer])
+
+  const data = [
+    {
+      id: '01',
+      src: 'images/banner.png',
+      desc: 'Garden House, Kamakura',
+    },
+    {
+      id: '02',
+      src: 'images/jomyoji.png',
+      desc: 'Jomyoji, Kamakura',
+    },
+    {
+      id: '03',
+      src: 'images/bungakukan.png',
+      desc: 'Kamakura Bungakukan, Kamakura',
+    },
+    {
+      id: '04',
+      src: 'images/kita-kamakura.png',
+      desc: 'Kita Kamakura',
+    },
+  ]
+
   return (
     <Container>
       <Hero>
         <ImgWrap>
-          <Img src="images/banner.png" alt="banner" />
+          <Img src={data[slide].src} alt={data[slide].desc} />
         </ImgWrap>
         <RightPane>
           <Name>
@@ -155,10 +199,13 @@ const Banner: FunctionComponent = () => {
           </Name>
           <SlideWrap>
             <Circle
-              value={66}
-              text={'01'}
+              value={timer}
+              maxValue={7}
+              text={data[slide].id}
               strokeWidth={4}
+              easingFunction={0}
               styles={buildStyles({
+                pathTransitionDuration: 1.1,
                 textColor: theme.color.neutral['400'],
                 pathColor: theme.color.brand.primary,
                 trailColor: 'transparent',
@@ -166,7 +213,7 @@ const Banner: FunctionComponent = () => {
               })}
             />
             <Line />
-            <SlideTitle>Garden House, Kamakura</SlideTitle>
+            <SlideTitle>{data[slide].desc}</SlideTitle>
           </SlideWrap>
         </RightPane>
       </Hero>
