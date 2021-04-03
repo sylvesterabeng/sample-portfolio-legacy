@@ -26,7 +26,7 @@ const HomeScreen: FunctionComponent = () => {
             '横浜、鎌倉が大好きな人。平日フロントエンド・UI/UX 周りやっていて、土曜日はたまに写真撮ったりします',
           images: [
             {
-              url: 'images/ogp.png',
+              url: 'https://sylvester-abeng.vercel.app/images/ogp.png',
               alt: 'Sylvester Abeng',
             },
           ],
