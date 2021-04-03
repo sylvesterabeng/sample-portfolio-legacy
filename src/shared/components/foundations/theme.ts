@@ -85,8 +85,9 @@ const spacing = (...args: number[]): string => {
   }
 }
 
-const brandFontFamily = '"Bellefair", "Noto Serif Japanese", serif, san-serif;'
-const primaryFontFamily = '"Noto Serif Japanese", serif, san-serif;'
+const primaryFontFamily =
+  '"Noto Serif Japanese", "ヒラギノ明朝 ProN W6", "HiraMinProN-W6", "HG明朝E", "ＭＳ Ｐ明朝", "MS PMincho", "MS 明朝", serif, san-serif;'
+const brandFontFamily = `"Bellefair", ${primaryFontFamily}`
 
 export const theme: ITheme = {
   color: {
