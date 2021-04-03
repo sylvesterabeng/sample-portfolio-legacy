@@ -4,23 +4,34 @@ import { media, styled, theme } from '@components/foundations'
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar'
 import { FunctionComponent, useEffect } from 'react'
 
+interface CircleProps {
+  timer: number
+}
+
 const Container = styled.div`
-  height: 100vh;
   display: flex;
   min-height: 320px;
-  align-items: center;
+  align-items: flex-start;
   border-radius: ${p => p.theme.shape.radius.rg};
+
+  ${media.lg} {
+    align-items: center;
+  }
 `
 
 const Hero = styled.div`
   display: flex;
   flex-direction: column;
-  margin-top: ${p => p.theme.spacing(3)};
+  margin-top: ${p => p.theme.spacing(8)};
+
+  ${media.md} {
+    margin-top: ${p => p.theme.spacing(12)};
+  }
 
   ${media.lg} {
     flex-direction: row;
     align-items: flex-end;
-    margin-top: ${p => p.theme.spacing(8)};
+    margin-top: ${p => p.theme.spacing(14)};
   }
 `
 
@@ -79,35 +90,41 @@ const SlideWrap = styled.div`
   margin-bottom: ${p => p.theme.spacing(2)};
 
   ${media.md} {
-    max-width: 360px;
+    width: 240px;
     margin-bottom: ${p => p.theme.spacing(3)};
   }
 
   ${media.lg} {
+    width: 360px;
     margin-bottom: 0;
   }
 `
 
 const Circle = styled(CircularProgressbar)`
+  min-width: 40px;
+  min-height: 40px;
   width: 40px;
   height: 40px;
   font-family: ${p => p.theme.font.family.brand};
 
   ${media.md} {
+    min-width: 56px;
+    min-height: 56px;
     width: 56px;
     height: 56px;
   }
 
   .CircularProgressbar-path {
-    transition-timing-function: linear;
-    transition-duration: 1s !important;
+    transition-timing-function: ${(p: CircleProps) =>
+      p.timer === 0 ? 'ease' : 'linear'};
     animation-direction: alternate;
+    font-size: 24px;
   }
 `
 
 const Line = styled.div`
   flex: 1;
-  width: 40px;
+  min-width: 16px;
   margin: ${p => p.theme.spacing(0, 2)};
   border-top: 1px solid ${p => p.theme.color.neutral['400']};
 `
@@ -154,7 +171,7 @@ const Banner: FunctionComponent = () => {
   useEffect(() => {
     if (timer === 8) {
       setTimer(0)
-      slide === 3 ? setSlide(0) : setSlide(slide + 1)
+      slide === data.length - 1 ? setSlide(0) : setSlide(slide + 1)
     }
     const intervalId = setInterval(() => {
       setTimer(timer + 1)
@@ -166,7 +183,7 @@ const Banner: FunctionComponent = () => {
   const data = [
     {
       id: '01',
-      src: 'images/banner.png',
+      src: 'images/garden-house.png',
       desc: 'Garden House, Kamakura',
     },
     {
@@ -176,13 +193,18 @@ const Banner: FunctionComponent = () => {
     },
     {
       id: '03',
-      src: 'images/bungakukan.png',
+      src: 'images/bungakukan-2.png',
       desc: 'Kamakura Bungakukan, Kamakura',
     },
     {
       id: '04',
-      src: 'images/kita-kamakura.png',
-      desc: 'Kita Kamakura',
+      src: 'images/fumotoppara.png',
+      desc: 'Fumotoppara, Shizuoka',
+    },
+    {
+      id: '05',
+      src: 'images/sakura.png',
+      desc: 'Minami Ota, Yokohama',
     },
   ]
 
@@ -199,13 +221,13 @@ const Banner: FunctionComponent = () => {
           </Name>
           <SlideWrap>
             <Circle
+              timer={timer}
               value={timer}
               maxValue={7}
               text={data[slide].id}
               strokeWidth={4}
-              easingFunction={0}
               styles={buildStyles({
-                pathTransitionDuration: 1.1,
+                pathTransitionDuration: 1,
                 textColor: theme.color.neutral['400'],
                 pathColor: theme.color.brand.primary,
                 trailColor: 'transparent',

@@ -4,16 +4,6 @@ import { FunctionComponent } from 'react'
 import { SectionWithScroller } from '@components/layout'
 import { PhotographySlide, SectionLabel } from '@entities/index'
 
-const ComingSoon = styled.span`
-  color: ${p => p.theme.color.brand.primary};
-  font-family: ${p => p.theme.font.family.brand};
-  font-size: ${p => p.theme.font.size.sm};
-
-  ${media.md} {
-    font-size: ${p => p.theme.font.size.rg};
-  }
-`
-
 const ImgCover = styled.div`
   width: 100%;
   height: 100%;
@@ -98,7 +88,7 @@ const Photography: FunctionComponent = () => {
   const slides: PhotographySlide[] = [
     {
       name: 'kamakura-photowalk',
-      src: 'images/banner.png',
+      src: 'images/garden-house.png',
       label: '鎌倉フォトウォーク',
     },
     {
@@ -122,9 +112,9 @@ const Photography: FunctionComponent = () => {
       label: '北鎌倉',
     },
     {
-      name: 'family-photo',
-      src: 'images/arciaga.png',
-      label: 'ファミリーフォト',
+      name: 'sakura',
+      src: 'images/sakura.png',
+      label: '桜',
     },
   ]
 
@@ -134,10 +124,7 @@ const Photography: FunctionComponent = () => {
         <Slide key={idx}>
           <ImgCover />
           <Img src={s.src} alt={s.name} draggable="false" />
-          <Label>
-            <ComingSoon>Coming Soon</ComingSoon>
-            {s.label}
-          </Label>
+          <Label>{s.label}</Label>
         </Slide>
       ))}
     </SectionWithScroller>
