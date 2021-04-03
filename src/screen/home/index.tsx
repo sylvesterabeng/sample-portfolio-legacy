@@ -6,6 +6,7 @@ import Introduction from './introduction'
 import Photography from './photography'
 import { FunctionComponent } from 'react'
 import { BasicLayout } from '@components/layout'
+import { NextSeo } from 'next-seo'
 
 const Container = styled.div`
   display: flex;
@@ -15,14 +16,32 @@ const Container = styled.div`
 
 const HomeScreen: FunctionComponent = () => {
   return (
-    <Container>
-      <Header />
-      <BasicLayout>
-        <Banner />
-        <Introduction />
-      </BasicLayout>
-      <Photography />
-    </Container>
+    <>
+      <NextSeo
+        title="Sylvester Abeng"
+        description="横浜、鎌倉が大好きな人。平日フロントエンド・UI/UX 周りやっていて、土曜日はたまに写真撮ったりします"
+        openGraph={{
+          title: 'Sylvester Abeng',
+          description:
+            '横浜、鎌倉が大好きな人。平日フロントエンド・UI/UX 周りやっていて、土曜日はたまに写真撮ったりします',
+          images: [
+            {
+              url: 'https://sylvester-abeng.vercel.app/images/ogp.png',
+              alt: 'Sylvester Abeng',
+            },
+          ],
+          site_name: 'Sylvester Abeng',
+        }}
+      />
+      <Container>
+        <Header />
+        <BasicLayout>
+          <Banner />
+          <Introduction />
+        </BasicLayout>
+        <Photography />
+      </Container>
+    </>
   )
 }
 

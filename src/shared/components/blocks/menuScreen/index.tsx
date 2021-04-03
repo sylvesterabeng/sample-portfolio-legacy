@@ -31,15 +31,6 @@ const NavIndex = styled.span`
 
 const NavItem = styled.span``
 
-const Strikethrough = styled.div`
-  background-image: linear-gradient(
-    transparent 45%,
-    #777 45% 55%,
-    transparent 55%
-  );
-  height: 4px;
-`
-
 const Nav = styled.div`
   font-size: ${p => p.theme.font.size.xxl};
   color: ${(p: NavProps) =>
@@ -63,9 +54,6 @@ const Nav = styled.div`
     color: ${(p: NavProps) => (p.comingSoon ? '' : theme.color.brand.primary)};
   }
 
-  :not(:last-child) {
-    margin-bottom: ${p => p.theme.spacing(2)};
-  }
   ${NavItem} +  ${NavItem} {
     margin-left: ${p => p.theme.spacing(6)};
   }

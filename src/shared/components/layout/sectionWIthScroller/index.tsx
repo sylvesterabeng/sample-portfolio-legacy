@@ -31,7 +31,7 @@ const Label = styled.div`
   }
 `
 
-const LabelSimple = styled.div`
+const LabelSimple = styled.span`
   font-family: ${p => p.theme.font.family.brand};
   font-size: ${p => p.theme.font.size.rg};
 
@@ -59,6 +59,17 @@ const Scroller = styled.div`
   }
 `
 
+const ComingSoon = styled.span`
+  color: ${p => p.theme.color.brand.primary};
+  font-family: ${p => p.theme.font.family.brand};
+  font-size: ${p => p.theme.font.size.sm};
+  margin-left: ${p => p.theme.spacing(2)};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.rg};
+  }
+`
+
 const SectionWithScroller: FunctionComponent<Props> = ({
   sectionLabel,
   children,
@@ -66,7 +77,10 @@ const SectionWithScroller: FunctionComponent<Props> = ({
   return (
     <Container>
       <BasicLayout>
-        <LabelSimple>{sectionLabel.simple}</LabelSimple>
+        <div>
+          <LabelSimple>{sectionLabel.simple}</LabelSimple>
+          <ComingSoon>Coming Soon</ComingSoon>
+        </div>
         <Label>
           <LabelNoun>{sectionLabel.noun}</LabelNoun>
           <LabelVerb>{sectionLabel.verb}</LabelVerb>
