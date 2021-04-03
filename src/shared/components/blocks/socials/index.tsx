@@ -17,20 +17,23 @@ const Container = styled.div`
   align-items: center;
   > ${SocialItem} {
     :not(:last-child) {
-      margin-right: ${p => p.theme.spacing(3)};
+      margin-right: ${p => p.theme.spacing(2)};
     }
   }
 `
 
 const Icon = styled(FontAwesomeIcon)`
-  font-size: ${p => p.theme.font.size.lg};
+  font-size: ${p => p.theme.font.size.md};
 `
 
 const Socials: FunctionComponent = () => {
   const sns = [
-    { icon: faFacebook, url: 'https://example.com' },
-    { icon: faTwitter, url: 'https://example.com' },
-    { icon: faInstagramSquare, url: 'https://example.com' },
+    { icon: faFacebook, url: 'https://www.facebook.com/sylvesterabeng94' },
+    { icon: faTwitter, url: 'https://twitter.com/sylvesterabeng_' },
+    {
+      icon: faInstagramSquare,
+      url: 'https://www.instagram.com/sylvester.abeng/',
+    },
   ]
   return (
     <Container>
