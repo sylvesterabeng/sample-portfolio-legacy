@@ -1,5 +1,6 @@
 import * as React from 'react'
 import { media, styled, theme } from '@components/foundations'
+import { bannerSlides } from '@data/index'
 
 import {
   CircularProgressbarWithChildren,
@@ -7,7 +8,7 @@ import {
 } from 'react-circular-progressbar'
 import { FunctionComponent, useEffect } from 'react'
 // @ts-ignore
-import { useTransition, animated, config } from 'react-spring'
+import { useTransition, animated, config, useTrail } from 'react-spring'
 
 interface CircleProps {
   timer: number
@@ -131,7 +132,10 @@ const Circle = styled(CircularProgressbarWithChildren)`
 `
 
 const CircleIndex = styled.span`
+  cursor: pointer;
+  user-select: none;
   font-size: ${p => p.theme.font.size.sm};
+  color: ${p => p.theme.color.neutral['400']};
 
   ${media.md} {
     font-size: ${p => p.theme.font.size.rg};
@@ -182,11 +186,14 @@ const ImgWrap = styled.div`
 `
 
 const Img = styled.img`
-  min-height: 240px;
   height: 50vh;
   width: 100vw;
+  user-select: none;
   object-fit: cover;
+  min-height: 240px;
+  pointer-events: none;
   border-radius: ${p => p.theme.shape.radius.sm};
+
   ${media.lg} {
     height: 80vh;
   }
@@ -194,15 +201,46 @@ const Img = styled.img`
 
 const AnimatedImg = animated(Img)
 
+function NameTrail({ open, children, ...props }) {
+  const items = React.Children.toArray(children)
+  const trail = useTrail(items.length, {
+    config: { mass: 10, tension: 4000, friction: 400 },
+    opacity: 1,
+    x: open ? 0 : 20,
+    height: open ? 110 : 0,
+    from: { opacity: 0, x: 20, height: 0 },
+  })
+
+  return (
+    <Name {...props}>
+      {trail.map(({ x, height, ...rest }, index) => (
+        <animated.span
+          key={index}
+          style={{
+            ...rest,
+            transform: x.interpolate(x => `translate3d(0,${x}px,0)`),
+          }}
+        >
+          {items[index]}
+        </animated.span>
+      ))}
+    </Name>
+  )
+}
+
 const Banner: FunctionComponent = () => {
   const maxTimer = 7
   const [timer, setTimer] = React.useState(0)
   const [slide, setSlide] = React.useState(0)
 
+  const setNextSlide = () => {
+    slide === bannerSlides.length - 1 ? setSlide(0) : setSlide(slide + 1)
+  }
+
   useEffect(() => {
     if (timer === 8) {
       setTimer(0)
-      slide === slides.length - 1 ? setSlide(0) : setSlide(slide + 1)
+      setNextSlide()
     }
     const intervalId = setInterval(() => {
       setTimer(timer + 1)
@@ -211,35 +249,12 @@ const Banner: FunctionComponent = () => {
     return () => clearInterval(intervalId)
   }, [timer])
 
-  const slides = [
-    {
-      id: '01',
-      src: 'images/garden-house.png',
-      desc: 'Garden House, Kamakura',
-    },
-    {
-      id: '02',
-      src: 'images/jomyoji.png',
-      desc: 'Jomyoji, Kamakura',
-    },
-    {
-      id: '03',
-      src: 'images/bungakukan-2.png',
-      desc: 'Kamakura Bungakukan, Kamakura',
-    },
-    {
-      id: '04',
-      src: 'images/fumotoppara.png',
-      desc: 'Fumotoppara, Shizuoka',
-    },
-    {
-      id: '05',
-      src: 'images/sakura.png',
-      desc: 'Minami Ota, Yokohama',
-    },
-  ]
+  const goToNextSlide = () => {
+    setTimer(0)
+    setNextSlide()
+  }
 
-  const transitions = useTransition(slides[slide], item => item.id, {
+  const transitions = useTransition(bannerSlides[slide], item => item.id, {
     from: { opacity: 0 },
     enter: { opacity: 1 },
     leave: { opacity: 0, position: 'absolute' },
@@ -260,10 +275,10 @@ const Banner: FunctionComponent = () => {
           ))}
         </ImgWrap>
         <RightPane>
-          <Name>
+          <NameTrail open={true}>
             <span>Sylvester </span>
             <span>Abeng</span>
-          </Name>
+          </NameTrail>
           <SlideWrap>
             <Circle
               timer={timer}
@@ -272,14 +287,16 @@ const Banner: FunctionComponent = () => {
               strokeWidth={4}
               styles={buildStyles({
                 pathTransitionDuration: 1,
-                textColor: theme.color.neutral['400'],
                 pathColor: theme.color.brand.primary,
                 trailColor: 'transparent',
-                strokeLinecap: 'butt',
               })}
             >
               {transitions.map(({ item, props, key }) => (
-                <AnimatedCircleIndex key={key} style={{ ...props }}>
+                <AnimatedCircleIndex
+                  key={key}
+                  style={{ ...props }}
+                  onClick={goToNextSlide}
+                >
                   {item.id}
                 </AnimatedCircleIndex>
               ))}

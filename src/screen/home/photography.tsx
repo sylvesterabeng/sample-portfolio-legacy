@@ -2,7 +2,8 @@ import * as React from 'react'
 import { media, styled } from '@components/foundations'
 import { FunctionComponent } from 'react'
 import { SectionWithScroller } from '@components/layout'
-import { PhotographySlide, SectionLabel } from '@entities/index'
+import { SectionLabel } from '@entities/index'
+import { photographySlides } from '@data/index'
 
 const ImgCover = styled.div`
   width: 100%;
@@ -28,6 +29,10 @@ const Label = styled.span`
   padding: ${p => p.theme.spacing(1, 3)};
   background: ${p => p.theme.color.white};
   font-family: ${p => p.theme.font.family.primary};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.rg};
+  }
 
   ${media.lg} {
     font-size: ${p => p.theme.font.size.md};
@@ -85,42 +90,9 @@ const Photography: FunctionComponent = () => {
     verb: 'を撮る',
   }
 
-  const slides: PhotographySlide[] = [
-    {
-      name: 'kamakura-photowalk',
-      src: 'images/garden-house.png',
-      label: '鎌倉フォトウォーク',
-    },
-    {
-      name: 'jomyoji',
-      src: 'images/jomyoji.png',
-      label: '浄妙寺',
-    },
-    {
-      name: 'kamakura-bungakukan',
-      src: 'images/bungakukan.png',
-      label: '鎌倉文学館',
-    },
-    {
-      name: 'fumotoppara',
-      src: 'images/fumotoppara.png',
-      label: 'ふもとっぱら',
-    },
-    {
-      name: 'kita-kamakura',
-      src: 'images/kita-kamakura.png',
-      label: '北鎌倉',
-    },
-    {
-      name: 'sakura',
-      src: 'images/sakura.png',
-      label: '桜',
-    },
-  ]
-
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
-      {slides.map((s, idx) => (
+      {photographySlides.map((s, idx) => (
         <Slide key={idx}>
           <ImgCover />
           <Img src={s.src} alt={s.name} draggable="false" />
