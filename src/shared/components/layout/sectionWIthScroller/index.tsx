@@ -79,7 +79,7 @@ const SectionWithScroller: FunctionComponent<Props> = ({
       <BasicLayout>
         <div>
           <LabelSimple>{sectionLabel.simple}</LabelSimple>
-          <ComingSoon>Coming Soon</ComingSoon>
+          <ComingSoon>※Coming Soon</ComingSoon>
         </div>
         <Label>
           <LabelNoun>{sectionLabel.noun}</LabelNoun>

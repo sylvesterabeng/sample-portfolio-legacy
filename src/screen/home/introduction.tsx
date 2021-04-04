@@ -8,7 +8,7 @@ const Container = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  padding: ${p => p.theme.spacing(15, 0)};
+  padding: ${p => p.theme.spacing(20, 0)};
 
   ${media.md} {
     padding: ${p => p.theme.spacing(50, 0)};
@@ -24,6 +24,7 @@ const TextWrap = styled.div`
 `
 
 const Text = styled.p`
+  white-space: nowrap;
   font-size: ${p => p.theme.font.size.rg};
   :not(:last-child) {
     margin-bottom: ${p => p.theme.spacing(1)};
