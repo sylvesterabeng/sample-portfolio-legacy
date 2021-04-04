@@ -26,6 +26,8 @@ const TextWrap = styled.div`
 const Text = styled.p`
   white-space: nowrap;
   font-size: ${p => p.theme.font.size.rg};
+  color: ${p => p.theme.color.neutral['400']};
+
   :not(:last-child) {
     margin-bottom: ${p => p.theme.spacing(1)};
   }
