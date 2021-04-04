@@ -41,7 +41,7 @@ const Nav = styled.div`
   display: flex;
 
   ::after {
-    content: 'Coming Soon';
+    content: '※Coming Soon';
     display: ${(p: NavProps) => (p.comingSoon ? 'block' : 'none')};
     margin-top: ${p => p.theme.spacing(2)};
     margin-left: ${p => p.theme.spacing(1)};
