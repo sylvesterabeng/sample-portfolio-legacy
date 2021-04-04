@@ -34,6 +34,7 @@ const Label = styled.div`
 const LabelSimple = styled.span`
   font-family: ${p => p.theme.font.family.brand};
   font-size: ${p => p.theme.font.size.rg};
+  color: ${p => p.theme.color.neutral['500']};
 
   ${media.md} {
     font-size: ${p => p.theme.font.size.md};
