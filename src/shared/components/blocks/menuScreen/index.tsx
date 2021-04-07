@@ -1,7 +1,8 @@
 import * as React from 'react'
+import { FunctionComponent } from 'react'
 import { media, styled, theme } from '@components/foundations'
 import { Socials } from '@components/blocks'
-import { FunctionComponent } from 'react'
+import { navItems } from '@data/index'
 
 interface NavProps {
   comingSoon: boolean
@@ -31,7 +32,7 @@ const NavIndex = styled.span`
 
 const NavItem = styled.span``
 
-const Nav = styled.div`
+const Nav = styled.a`
   font-size: ${p => p.theme.font.size.xxl};
   color: ${(p: NavProps) =>
     p.comingSoon ? theme.color.neutral['200'] : theme.color.neutral['500']};
@@ -39,6 +40,7 @@ const Nav = styled.div`
   font-family: ${p => p.theme.font.family.brand};
   cursor: ${(p: NavProps) => (p.comingSoon ? 'not-allowed' : 'pointer')};
   display: flex;
+  text-decoration: none;
 
   ::after {
     content: '※Coming Soon';
@@ -64,14 +66,18 @@ const Nav = styled.div`
 `
 
 const Menu: FunctionComponent = () => {
-  const navItems = ['Home', 'Photography', 'Designs', 'Blog']
   return (
     <Container>
       <NavWrap>
-        {navItems.map((n, idx) => (
-          <Nav key={idx} comingSoon={idx !== 0}>
-            <NavIndex>{'0' + (idx + 1)}</NavIndex>
-            <NavItem>{n}</NavItem>
+        {navItems.map(({ idx, name, available, url, external }) => (
+          <Nav
+            key={idx}
+            comingSoon={!available}
+            href={available ? url : 'javascript:void(0)'}
+            target={external ? '_blank' : '_self'}
+          >
+            <NavIndex>{idx}</NavIndex>
+            <NavItem>{name}</NavItem>
           </Nav>
         ))}
       </NavWrap>

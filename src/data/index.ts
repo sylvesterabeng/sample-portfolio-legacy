@@ -1,36 +1,36 @@
-import {PhotographySlide} from "@entities/index";
+import { PhotographySlide } from '@entities/index'
 
 export const bannerSlides = [
   {
-    "id": "01",
-    "src": "images/garden-house.png",
-    "desc": "Garden House, Kamakura"
+    id: '01',
+    src: 'images/garden-house.png',
+    desc: 'Garden House, Kamakura',
   },
   {
-    "id": "02",
-    "src": "images/jomyoji.png",
-    "desc": "Jomyoji, Kamakura"
+    id: '02',
+    src: 'images/jomyoji.png',
+    desc: 'Jomyoji, Kamakura',
   },
   {
-    "id": "03",
-    "src": "images/bungakukan-2.png",
-    "desc": "Kamakura Bungakukan, Kamakura"
+    id: '03',
+    src: 'images/bungakukan-2.png',
+    desc: 'Kamakura Bungakukan, Kamakura',
   },
   {
-    "id": "04",
-    "src": "images/fumotoppara.png",
-    "desc": "Fumotoppara, Shizuoka"
+    id: '04',
+    src: 'images/fumotoppara.png',
+    desc: 'Fumotoppara, Shizuoka',
   },
   {
-    "id": "05",
-    "src": "images/sakura.png",
-    "desc": "Minami Ota, Yokohama"
+    id: '05',
+    src: 'images/sakura.png',
+    desc: 'Minami Ota, Yokohama',
   },
   {
-    "id": "06",
-    "src": "images/yamate.png",
-    "desc": "Yamate, Yokohama"
-  }
+    id: '06',
+    src: 'images/yamate.png',
+    desc: 'Yamate, Yokohama',
+  },
 ]
 
 export const photographySlides: PhotographySlide[] = [
@@ -63,5 +63,30 @@ export const photographySlides: PhotographySlide[] = [
     name: 'sakura',
     src: 'images/sakura.png',
     label: '桜',
+  },
+]
+
+export const navItems = [
+  { idx: '01', name: 'Home', available: true, url: '', external: false },
+  {
+    idx: '02',
+    name: 'Photography',
+    available: false,
+    url: 'photography',
+    external: false,
+  },
+  {
+    idx: '03',
+    name: 'Designs',
+    available: false,
+    url: 'designs',
+    external: false,
+  },
+  {
+    idx: '04',
+    name: 'Blog',
+    available: true,
+    url: 'https://note.com/sylvesterabeng',
+    external: true,
   },
 ]
