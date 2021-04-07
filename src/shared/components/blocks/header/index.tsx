@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { faBars, faTimes } from '@fortawesome/free-solid-svg-icons'
 import ScrollLock from 'react-scrolllock'
 import Link from 'next/link'
 import { media, styled } from '@components/foundations'
@@ -52,10 +51,7 @@ const Header: FunctionComponent = () => {
         <Link href="/" passHref>
           <Button>Sy</Button>
         </Link>
-        <Button
-          icon={menuIsOpened ? faTimes : faBars}
-          onClick={handleMenuClick}
-        >
+        <Button onClick={handleMenuClick}>
           {menuIsOpened ? 'Close' : 'Menu'}
         </Button>
       </Container>
