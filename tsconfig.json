@@ -22,7 +22,7 @@
       "@pages/*": ["pages/*"],
       "@screens/*": ["screens/*"],
       "@interfaces/*": ["interfaces/*"],
-      "@lib/*": ["lib/*"]
+      "@api/*": ["api/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
