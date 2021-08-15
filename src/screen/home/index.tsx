@@ -34,7 +34,6 @@ const HomeScreen: FunctionComponent = () => {
         }}
       />
       <Container>
-        <Header />
         <BasicLayout>
           <Banner />
           <Introduction />

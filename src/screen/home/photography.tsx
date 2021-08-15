@@ -39,12 +39,12 @@ const Label = styled.span`
   }
 `
 
-const Slide = styled.div`
+const Slide = styled.a`
   display: flex;
   position: relative;
   margin-right: 8vw;
   justify-content: center;
-  cursor: not-allowed;
+  cursor: pointer;
 
   :nth-child(4n + 1) {
     ${Label} {
@@ -93,7 +93,7 @@ const Photography: FunctionComponent = () => {
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
       {photographySlides.map((s, idx) => (
-        <Slide key={idx}>
+        <Slide key={idx} href={'photography/' + s.name}>
           <ImgCover />
           <Img src={s.src} alt={s.name} draggable="false" />
           <Label>{s.label}</Label>

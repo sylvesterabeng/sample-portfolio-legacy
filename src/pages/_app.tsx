@@ -5,6 +5,7 @@ import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import 'react-circular-progressbar/dist/styles.css'
 import { theme, GlobalStyle, ThemeProvider } from '@components/foundations'
+import { Header } from '@components/blocks'
 
 config.autoAddCss = false
 
@@ -27,6 +28,7 @@ export default class MyApp extends App {
         </Head>
         <ThemeProvider theme={theme}>
           <GlobalStyle />
+          <Header />
           <Component {...pageProps} />
         </ThemeProvider>
       </>

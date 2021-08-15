@@ -3,7 +3,7 @@ const navItems = [
     {
         idx: '02',
         name: 'Photography',
-        available: false,
+        available: true,
         url: 'photography',
         external: false,
     },
