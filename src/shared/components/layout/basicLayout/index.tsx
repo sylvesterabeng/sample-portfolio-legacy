@@ -11,6 +11,7 @@ const Container = styled.div`
 
   ${media.xl} {
     padding: ${p => p.theme.spacing(0, 8)};
+    padding-top: ${p => p.theme.spacing(15)};
   }
 `
 

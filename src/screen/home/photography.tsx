@@ -1,23 +1,19 @@
 import * as React from 'react'
 import { media, styled } from '@components/foundations'
-import { FunctionComponent } from 'react'
 import { SectionWithScroller } from '@components/layout'
 import { SectionLabel } from '@entities/index'
-import { photographySlides } from '@data/index'
+import { getPhotographySlides } from '@data/photography-slides'
 
-const ImgCover = styled.div`
-  width: 100%;
-  height: 100%;
-  opacity: 0.2;
-  position: absolute;
-  background-color: ${p => p.theme.color.black};
-`
+interface Props {
+  photography: string[]
+}
 
 const Img = styled.img`
   width: 75vw;
   height: 100%;
   max-width: 1024px;
   object-fit: cover;
+  border-radius: ${p => p.theme.shape.radius.sm};
 `
 
 const Label = styled.span`
@@ -83,18 +79,20 @@ const Slide = styled.a`
   }
 `
 
-const Photography: FunctionComponent = () => {
+const Photography = ({ photography }: Props) => {
   const sectionLabel: SectionLabel = {
     simple: 'Photography',
     noun: '好き',
     verb: 'を撮る',
   }
 
+  const slides = getPhotographySlides(photography)
+  console.log(photography)
+
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
-      {photographySlides.map((s, idx) => (
+      {slides.map((s, idx) => (
         <Slide key={idx} href={'photography/' + s.name}>
-          <ImgCover />
           <Img src={s.src} alt={s.name} draggable="false" />
           <Label>{s.label}</Label>
         </Slide>

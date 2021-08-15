@@ -1,36 +1,32 @@
-import { PhotographySlide } from '@entities/index'
+export const titleMapper = (slug: string) => {
+  switch (slug) {
+    case 'kamakura-photowalk':
+      return '鎌倉フォトウォーク'
+    case 'jomyoji':
+      return '浄妙寺'
+    case 'kamakura-bungakukan':
+      return '鎌倉文学館'
+    case 'fumotoppara':
+      return 'ふもとっぱら'
+    case 'yamate':
+      return '山手'
+    case 'sakura':
+      return '桜'
+    default:
+      return ''
+  }
+}
 
-const photographySlides: PhotographySlide[] = [
-    {
-        name: 'kamakura-photowalk',
-        src: 'images/garden-house.png',
-        label: '鎌倉フォトウォーク',
-    },
-    {
-        name: 'jomyoji',
-        src: 'images/jomyoji.png',
-        label: '浄妙寺',
-    },
-    {
-        name: 'kamakura-bungakukan',
-        src: 'images/bungakukan.png',
-        label: '鎌倉文学館',
-    },
-    {
-        name: 'fumotoppara',
-        src: 'images/fumotoppara.png',
-        label: 'ふもとっぱら',
-    },
-    {
-        name: 'yamate',
-        src: 'images/yamate.png',
-        label: '山手',
-    },
-    {
-        name: 'sakura',
-        src: 'images/sakura.png',
-        label: '桜',
-    },
-]
+export const getPhotographySlides = (slugs: string[]) => {
+  const resources = []
+  slugs.map(s => {
+    const slide = {
+      name: s,
+      src: `images/slides/${s}.png`,
+      label: titleMapper(s),
+    }
+    resources.push(slide)
+  })
 
-export default photographySlides
+  return resources
+}

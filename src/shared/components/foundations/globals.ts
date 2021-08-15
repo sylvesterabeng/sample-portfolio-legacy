@@ -93,9 +93,4 @@ img:not([alt]) {
     scroll-behavior: auto !important;
   }
 }
-@media print {
-  html, body {
-    display: none;
-  }
-}
 `

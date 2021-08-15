@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { GetStaticProps } from 'next'
 import { getPhotography } from '@api/index'
+import { BasicLayout } from '@components/layout'
 
 interface Props {
   photography: string[]
@@ -9,11 +10,11 @@ interface Props {
 const PhotographyPage = ({ photography }: Props) => {
   return (
     <>
-      <div>
+      <BasicLayout>
         {photography.map((p, idx) => {
           return <p key={idx}>{p}</p>
         })}
-      </div>
+      </BasicLayout>
     </>
   )
 }

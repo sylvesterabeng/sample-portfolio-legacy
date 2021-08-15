@@ -7,7 +7,7 @@ const getPhotography = async () => {
   const files = await fs.readdir(SRC)
   const photography = []
   for (const f of files) {
-    photography.push(`${SRC}/${f}`)
+    photography.push(`${f}`)
   }
 
   return photography

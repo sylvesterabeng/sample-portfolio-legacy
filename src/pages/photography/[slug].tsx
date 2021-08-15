@@ -14,6 +14,8 @@ const Container = styled.div`
   background: ${p => p.theme.color.neutral['100']};
 `
 
+const Contents = styled.div``
+
 const Images = styled.div`
   display: flex;
   flex-direction: column;

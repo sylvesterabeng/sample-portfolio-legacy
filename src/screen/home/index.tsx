@@ -1,12 +1,14 @@
 import * as React from 'react'
 import { styled } from '@components/foundations'
-import { Header } from '@components/blocks'
 import Banner from './banner'
 import Introduction from './introduction'
 import Photography from './photography'
-import { FunctionComponent } from 'react'
 import { BasicLayout } from '@components/layout'
 import { NextSeo } from 'next-seo'
+
+interface Props {
+  photography: string[]
+}
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +16,7 @@ const Container = styled.div`
   background: ${p => p.theme.color.neutral['100']};
 `
 
-const HomeScreen: FunctionComponent = () => {
+const HomeScreen = ({ photography }: Props) => {
   return (
     <>
       <NextSeo
@@ -38,7 +40,7 @@ const HomeScreen: FunctionComponent = () => {
           <Banner />
           <Introduction />
         </BasicLayout>
-        <Photography />
+        <Photography photography={photography} />
       </Container>
     </>
   )
