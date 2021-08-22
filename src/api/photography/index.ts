@@ -1,25 +1,33 @@
 import path from 'path'
 import fs from 'fs-extra'
+import { Photography } from '@entities/index'
+import { metafile } from '@api/meta'
+import { getMeta } from '@api/index'
 
 const SRC = path.resolve(`${process.cwd()}/public/images/photography/`)
 
-const getPhotography = async () => {
-  const files = await fs.readdir(SRC)
-  const photography = []
+const getPhotography: (slug: string) => Promise<Photography> = async (
+  slug: string
+) => {
+  const meta = await getMeta(slug)
+  const files = await fs.readdir(`${SRC}/${slug}`)
+  const resources = []
   for (const f of files) {
-    photography.push(`${f}`)
+    if (f !== metafile) resources.push(`/images/photography/${slug}/${f}`)
+  }
+  const photography: Photography = {
+    label: meta.label,
+    labelEn: meta.labelEn,
+    date: meta.date,
+    resources: resources,
   }
 
   return photography
 }
 
-export const getPaths: () => Promise<string[]> = async () => {
-  return await fs.readdir(SRC)
-}
-
-export default async () => {
+export default async (slug: string) => {
   try {
-    return await getPhotography()
+    return await getPhotography(slug)
   } catch (e) {
     console.error(e)
   }

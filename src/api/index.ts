@@ -1,2 +1,3 @@
+export { default as getPhotographyList } from './photography-list'
 export { default as getPhotography } from './photography'
-export { default as getPhotographyResources } from './photography-resources'
+export { default as getMeta } from './meta'

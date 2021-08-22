@@ -4,6 +4,7 @@ import { default as IndianaScroll } from 'react-indiana-drag-scroll'
 import { FunctionComponent } from 'react'
 import { BasicLayout } from '@components/layout'
 import { SectionLabel } from '@entities/index'
+import { basicPadding } from '@components/layout/basicLayout'
 
 interface Props {
   sectionLabel: SectionLabel
@@ -14,9 +15,7 @@ const Container = styled.div`
   justify-content: center;
 `
 
-const ScrollContainer = styled(IndianaScroll)`
-  overflow: auto !important;
-`
+const ScrollContainer = styled(IndianaScroll)``
 
 const Label = styled.div`
   font-size: ${p => p.theme.font.size.lg};
@@ -53,10 +52,11 @@ const LabelVerb = styled.span`
 const Scroller = styled.div`
   display: flex;
   width: max-content;
-  padding: ${p => p.theme.spacing(3, 0)};
+
+  ${basicPadding}
 
   ${media.md} {
-    padding: ${p => p.theme.spacing(5, 0)};
+    padding-top: ${p => p.theme.spacing(5)};
   }
 `
 
@@ -88,9 +88,7 @@ const SectionWithScroller: FunctionComponent<Props> = ({
         </Label>
       </BasicLayout>
       <ScrollContainer vertical={false}>
-        <BasicLayout>
-          <Scroller>{children}</Scroller>
-        </BasicLayout>
+        <Scroller>{children}</Scroller>
       </ScrollContainer>
     </Container>
   )

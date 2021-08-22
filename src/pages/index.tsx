@@ -1,7 +1,7 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
 import HomeScreen from '../screen/home'
-import { getPhotography } from '@api/index'
+import { getPhotographyList } from '@api/index'
 
 interface Props {
   photography: string[]
@@ -12,7 +12,7 @@ const Home = ({ photography }: Props) => {
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  const photography = await getPhotography()
+  const photography = await getPhotographyList()
   return {
     props: {
       photography,

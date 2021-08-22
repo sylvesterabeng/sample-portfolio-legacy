@@ -9,3 +9,13 @@ export interface PhotographySlide {
   src: String
   label: String
 }
+
+export interface Photography extends Meta {
+  resources: String[]
+}
+
+export interface Meta {
+  label: String
+  labelEn: String
+  date: String
+}

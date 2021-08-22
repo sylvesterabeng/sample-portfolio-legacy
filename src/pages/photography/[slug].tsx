@@ -1,20 +1,40 @@
 import * as React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getPhotographyResources } from '@api/index'
-import { getPaths } from '@api/photography'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { getPhotography } from '@api/index'
+import { getPaths } from '@api/photography-list'
 import { styled } from '@components/foundations'
 import { BasicLayout } from '@components/layout'
+import { Photography } from '@entities/index'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
-  resources: string[]
   slug: string
+  photography: Photography
 }
 
 const Container = styled.div`
   background: ${p => p.theme.color.neutral['100']};
 `
 
-const Contents = styled.div``
+const Header = styled.div`
+  margin-bottom: ${p => p.theme.spacing(5)};
+`
+
+const Date = styled.span`
+  color: ${p => p.theme.color.neutral['400']};
+`
+
+const Title = styled.h1`
+  font-size: ${p => p.theme.font.size.xxl};
+  color: ${p => p.theme.color.neutral['500']};
+`
+
+const Contents = styled.div`
+  padding-top: ${p => p.theme.spacing(15)};
+  max-width: 1280px;
+  margin: 0 auto;
+`
 
 const Images = styled.div`
   display: flex;
@@ -23,23 +43,57 @@ const Images = styled.div`
 `
 
 const Img = styled.img`
-  width: 1280px;
   user-select: none;
   pointer-events: none;
   margin-bottom: ${p => p.theme.spacing(2)};
   border-radius: ${p => p.theme.shape.radius.sm};
 `
 
-const PhotographyPage = ({ resources, slug }: Props) => {
+const Breadcrumb = styled.div`
+  margin-top: ${p => p.theme.spacing(3)};
+
+  > *:not(:last-child) {
+    margin-right: ${p => p.theme.spacing(1)};
+  }
+`
+
+const Link = styled.a`
+  text-decoration: none;
+  color: ${p => p.theme.color.neutral['400']};
+  font-family: ${p => p.theme.font.family.brand};
+  font-size: ${p => p.theme.font.size.md};
+
+  &:hover {
+    color: ${p => p.theme.color.brand.primary};
+  }
+`
+
+const Icon = styled(FontAwesomeIcon)`
+  color: ${p => p.theme.color.neutral['400']};
+`
+
+const PhotographyPage = ({ slug, photography }: Props) => {
   return (
     <Container>
       <BasicLayout>
-        <h1>{slug}</h1>
-        <Images>
-          {resources.map((r, idx) => {
-            return <Img alt={r} src={r} key={idx} />
-          })}
-        </Images>
+        <Contents>
+          <Header>
+            <Date>{photography.date}</Date>
+            <Title>{photography.label}</Title>
+            <Breadcrumb>
+              <Link href={'/'}>Home</Link>
+              <Icon icon={faChevronRight} />
+              <Link href={'/photography'}> Photography</Link>
+              <Icon icon={faChevronRight} />
+              <Link href={'/photography/' + slug}>{photography.labelEn}</Link>
+            </Breadcrumb>
+          </Header>
+          <Images>
+            {photography.resources.map((r, idx) => {
+              return <Img alt={r} src={r} key={idx} />
+            })}
+          </Images>
+        </Contents>
       </BasicLayout>
     </Container>
   )
@@ -55,11 +109,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params
-  const resources = await getPhotographyResources(slug as string)
+  const photography = await getPhotography(slug as string)
   return {
     props: {
-      resources,
       slug,
+      photography,
     },
   }
 }

@@ -4,26 +4,32 @@ import Link from 'next/link'
 import { media, styled } from '@components/foundations'
 import { MenuScreen } from '@components/blocks'
 import { FunctionComponent } from 'react'
+import { basicPadding } from '@components/layout/basicLayout'
 
 const Container = styled.div`
   width: 100%;
   display: flex;
   position: fixed;
   justify-content: space-between;
-  padding: ${p => p.theme.spacing(2, 3)};
   z-index: ${p => p.theme.elevation.HEADER};
   mix-blend-mode: difference;
 
+  @media (min-width: 0px) {
+    padding-top: ${p => p.theme.spacing(2)};
+  }
+
+  ${basicPadding}
+
   ${media.md} {
-    padding: ${p => p.theme.spacing(4, 3)};
+    padding-top: ${p => p.theme.spacing(4)};
   }
 
   ${media.lg} {
-    padding: ${p => p.theme.spacing(6, 5)};
+    padding-top: ${p => p.theme.spacing(6)};
   }
 
   ${media.xl} {
-    padding: ${p => p.theme.spacing(6, 8)};
+    padding-top: ${p => p.theme.spacing(6)};
   }
 `
 
@@ -38,6 +44,24 @@ const Button = styled.span`
   }
 `
 
+const Logo = styled(Button)`
+  height: 26px;
+  width: 21px;
+  background-image: url('/images/logo.svg');
+`
+
+const Menu = styled(Button)`
+  height: 16px;
+  width: 47px;
+  background-image: url('/images/menu.svg');
+`
+
+const Close = styled(Button)`
+  height: 17px;
+  width: 45px;
+  background-image: url('/images/close.svg');
+`
+
 const Header: FunctionComponent = () => {
   const [menuIsOpened, setMenuIsOpened] = React.useState(false)
 
@@ -49,11 +73,13 @@ const Header: FunctionComponent = () => {
     <>
       <Container>
         <Link href="/" passHref>
-          <Button>Sy</Button>
+          <Logo />
         </Link>
-        <Button onClick={handleMenuClick}>
-          {menuIsOpened ? 'Close' : 'Menu'}
-        </Button>
+        {menuIsOpened ? (
+          <Close onClick={handleMenuClick} />
+        ) : (
+          <Menu onClick={handleMenuClick} />
+        )}
       </Container>
       {menuIsOpened && <MenuScreen />}
       <ScrollLock isActive={menuIsOpened} />
