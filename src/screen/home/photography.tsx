@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { media, styled } from '@components/foundations'
 import { SectionWithScroller } from '@components/layout'
-import { SectionLabel } from '@entities/index'
-import { getPhotographySlides } from '@data/photography-slides'
+import { Meta, SectionLabel } from '@entities/index'
 
 interface Props {
-  photography: string[]
+  photography: Meta[]
 }
 
 const Img = styled.img`
@@ -86,13 +85,11 @@ const Photography = ({ photography }: Props) => {
     verb: 'を撮る',
   }
 
-  const slides = getPhotographySlides(photography)
-
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
-      {slides.map((s, idx) => (
-        <Slide key={idx} href={'photography/' + s.name}>
-          <Img src={s.src} alt={s.name} draggable="false" />
+      {photography.map(s => (
+        <Slide key={s.labelEn} href={'photography/' + s.label}>
+          <Img src={s.src} alt={s.labelEn} draggable="false" />
           <Label>{s.label}</Label>
         </Slide>
       ))}

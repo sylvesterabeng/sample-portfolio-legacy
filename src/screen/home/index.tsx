@@ -1,13 +1,14 @@
 import * as React from 'react'
+import { NextSeo } from 'next-seo'
 import { styled } from '@components/foundations'
+import { BasicLayout } from '@components/layout'
+import { Meta } from '@entities/index'
 import Banner from './banner'
 import Introduction from './introduction'
 import Photography from './photography'
-import { BasicLayout } from '@components/layout'
-import { NextSeo } from 'next-seo'
 
 interface Props {
-  photography: string[]
+  photography: Meta[]
 }
 
 const Container = styled.div`
