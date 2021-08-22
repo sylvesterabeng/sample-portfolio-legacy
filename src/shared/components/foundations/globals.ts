@@ -37,6 +37,7 @@ body {
   text-rendering: optimizeSpeed;
   font-family: ${theme.font.family.base};
   line-height: 1.65;
+    background: ${theme.color.neutral['100']};
 }
 ul[class],
 ol[class] {

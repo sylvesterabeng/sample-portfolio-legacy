@@ -58,21 +58,28 @@ const Images = styled.div`
 const Img = styled.img`
   user-select: none;
   pointer-events: none;
-  margin-bottom: ${p => p.theme.spacing(2)};
+  margin-bottom: ${p => p.theme.spacing(1)};
   border-radius: ${p => p.theme.shape.radius.sm};
+
+  ${media.md} {
+    margin-bottom: ${p => p.theme.spacing(2)};
+  }
 `
 
 const Breadcrumb = styled.div`
   margin-top: ${p => p.theme.spacing(1)};
-  font-size: ${p => p.theme.font.size.sm};
+  font-size: ${p => p.theme.font.size.rg};
+
+  > *:not(:last-child) {
+    margin-right: ${p => p.theme.spacing(0.5)};
+  }
 
   ${media.md} {
     margin-top: ${p => p.theme.spacing(3)};
-    font-size: ${p => p.theme.font.size.rg};
-  }
 
-  > *:not(:last-child) {
-    margin-right: ${p => p.theme.spacing(1)};
+    > *:not(:last-child) {
+      margin-right: ${p => p.theme.spacing(1)};
+    }
   }
 `
 
