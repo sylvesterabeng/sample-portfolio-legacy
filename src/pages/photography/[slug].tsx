@@ -3,7 +3,7 @@ import { GetStaticPaths, GetStaticProps } from 'next'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getPhotography } from '@api/index'
 import { getPaths } from '@api/photography-list'
-import { styled } from '@components/foundations'
+import { media, styled } from '@components/foundations'
 import { BasicLayout } from '@components/layout'
 import { Photography } from '@entities/index'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
@@ -18,16 +18,29 @@ const Container = styled.div`
 `
 
 const Header = styled.div`
-  margin-bottom: ${p => p.theme.spacing(5)};
+  margin-bottom: ${p => p.theme.spacing(3)};
+
+  ${media.md} {
+    margin-bottom: ${p => p.theme.spacing(5)};
+  }
 `
 
 const Date = styled.span`
+  font-size: ${p => p.theme.font.size.sm};
   color: ${p => p.theme.color.neutral['400']};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.rg};
+  }
 `
 
 const Title = styled.h1`
-  font-size: ${p => p.theme.font.size.xxl};
   color: ${p => p.theme.color.neutral['500']};
+  font-size: ${p => p.theme.font.size.lg};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.xxl};
+  }
 `
 
 const Contents = styled.div`
@@ -50,7 +63,13 @@ const Img = styled.img`
 `
 
 const Breadcrumb = styled.div`
-  margin-top: ${p => p.theme.spacing(3)};
+  margin-top: ${p => p.theme.spacing(1)};
+  font-size: ${p => p.theme.font.size.sm};
+
+  ${media.md} {
+    margin-top: ${p => p.theme.spacing(3)};
+    font-size: ${p => p.theme.font.size.rg};
+  }
 
   > *:not(:last-child) {
     margin-right: ${p => p.theme.spacing(1)};
@@ -61,7 +80,10 @@ const Link = styled.a`
   text-decoration: none;
   color: ${p => p.theme.color.neutral['400']};
   font-family: ${p => p.theme.font.family.brand};
-  font-size: ${p => p.theme.font.size.md};
+
+  ${media.md} {
+    font-size: ${p => p.theme.font.size.md};
+  }
 
   &:hover {
     color: ${p => p.theme.color.brand.primary};
