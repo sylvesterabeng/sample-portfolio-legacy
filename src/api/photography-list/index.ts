@@ -1,13 +1,16 @@
 import path from 'path'
 import fs from 'fs-extra'
+import { getMeta } from '@api/index'
+import { Meta } from '@entities/index'
 
 const SRC = path.resolve(`${process.cwd()}/public/images/photography/`)
 
-const getPhotographyList = async () => {
+const getPhotographyList: () => Promise<Meta[]> = async () => {
   const files = await fs.readdir(SRC)
-  const photography = []
+  const photography: Meta[] = []
   for (const f of files) {
-    photography.push(`${f}`)
+    const meta = await getMeta(f)
+    photography.push(meta)
   }
 
   return photography

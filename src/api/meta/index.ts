@@ -9,7 +9,14 @@ const getMeta: (slug: string) => Promise<Meta> = async (slug: string) => {
   const SRC = path.resolve(
     `${process.cwd()}/public/images/photography/${slug}/index.md`
   )
-  return (await fm(fs.readFileSync(SRC, 'utf8')).attributes) as Meta
+  const data = (await fm(fs.readFileSync(SRC, 'utf8')).attributes) as Meta
+  return {
+    slug,
+    label: data.label,
+    labelEn: data.labelEn,
+    date: data.date,
+    src: `images/slides/${slug}.png`,
+  } as Meta
 }
 
 export default async (slug: string) => {

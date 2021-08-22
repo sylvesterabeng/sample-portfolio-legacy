@@ -15,7 +15,9 @@ export interface Photography extends Meta {
 }
 
 export interface Meta {
+  slug: String
   label: String
   labelEn: String
   date: String
+  src: String
 }

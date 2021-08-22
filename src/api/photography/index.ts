@@ -16,9 +16,11 @@ const getPhotography: (slug: string) => Promise<Photography> = async (
     if (f !== metafile) resources.push(`/images/photography/${slug}/${f}`)
   }
   const photography: Photography = {
+    slug: slug,
     label: meta.label,
     labelEn: meta.labelEn,
     date: meta.date,
+    src: meta.src,
     resources: resources,
   }
 

@@ -87,7 +87,6 @@ const Photography = ({ photography }: Props) => {
   }
 
   const slides = getPhotographySlides(photography)
-  console.log(photography)
 
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>

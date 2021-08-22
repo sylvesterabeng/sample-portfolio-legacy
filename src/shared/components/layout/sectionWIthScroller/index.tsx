@@ -13,6 +13,7 @@ interface Props {
 const Container = styled.div`
   width: 100vw;
   justify-content: center;
+  padding-bottom: ${p => p.theme.spacing(5)};
 `
 
 const ScrollContainer = styled(IndianaScroll)``
@@ -50,13 +51,17 @@ const LabelVerb = styled.span`
 `
 
 const Scroller = styled.div`
+  ${basicPadding} {
+  }
+
   display: flex;
   width: max-content;
-
-  ${basicPadding}
+  padding-top: ${p => p.theme.spacing(3)};
+  padding-bottom: ${p => p.theme.spacing(3)};
 
   ${media.md} {
     padding-top: ${p => p.theme.spacing(5)};
+    padding-bottom: ${p => p.theme.spacing(5)};
   }
 `
 
