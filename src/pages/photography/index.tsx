@@ -27,7 +27,6 @@ const Slide = styled.a`
 `
 
 const Img = styled.img`
-  height: 100%;
   object-fit: cover;
   border-radius: ${p => p.theme.shape.radius.sm};
 `

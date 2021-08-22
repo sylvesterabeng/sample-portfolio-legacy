@@ -52,7 +52,7 @@ const Logo = styled(Button)`
 
 const Menu = styled(Button)`
   height: 17px;
-  width: 47px;
+  width: 48px;
   background-image: url('/images/menu.svg');
 `
 
