@@ -1,10 +1,11 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
-import HomeScreen from '../screen/home'
 import { getPhotographyList } from '@api/index'
+import { Meta } from '@entities/index'
+import HomeScreen from '../screen/home'
 
 interface Props {
-  photography: string[]
+  photography: Meta[]
 }
 
 const Home = ({ photography }: Props) => {
