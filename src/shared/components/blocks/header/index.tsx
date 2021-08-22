@@ -51,13 +51,13 @@ const Logo = styled(Button)`
 `
 
 const Menu = styled(Button)`
-  height: 16px;
+  height: 17px;
   width: 47px;
   background-image: url('/images/menu.svg');
 `
 
 const Close = styled(Button)`
-  height: 17px;
+  height: 18px;
   width: 45px;
   background-image: url('/images/close.svg');
 `
