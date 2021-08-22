@@ -88,7 +88,7 @@ const Photography = ({ photography }: Props) => {
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
       {photography.map(s => (
-        <Slide key={s.labelEn} href={'photography/' + s.label}>
+        <Slide key={s.labelEn} href={'photography/' + s.slug}>
           <Img src={s.src} alt={s.labelEn} draggable="false" />
           <Label>{s.label}</Label>
         </Slide>
