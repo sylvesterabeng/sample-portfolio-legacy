@@ -4,6 +4,8 @@ import { getPhotographyList } from '@api/index'
 import { BasicLayout } from '@components/layout'
 import { media, styled } from '@components/foundations'
 import { Meta } from '@entities/index'
+import { Level } from '@components/blocks/pageTitle'
+import { PageTitle } from '@components/blocks'
 
 interface Props {
   photography: Meta[]
@@ -16,7 +18,7 @@ const Container = styled.div`
 const Contents = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   padding-top: ${p => p.theme.spacing(15)};
 `
 
@@ -51,10 +53,21 @@ const Label = styled.span`
 `
 
 const PhotographyPage = ({ photography }: Props) => {
+  const levels: Level[] = [
+    {
+      label: 'Home',
+      level: '',
+    },
+    {
+      label: 'Photography',
+      level: 'photography',
+    },
+  ]
   return (
     <Container>
       <BasicLayout>
         <Contents>
+          <PageTitle title={'好きを撮る'} sub={'Photography'} levels={levels} />
           {photography.map(p => {
             return (
               <Slide href={`photography/${p.slug}`} key={p.slug}>
@@ -69,7 +82,7 @@ const PhotographyPage = ({ photography }: Props) => {
   )
 }
 
-export const getStaticProps: GetStaticProps = async context => {
+export const getStaticProps: GetStaticProps = async () => {
   const photography = await getPhotographyList()
   return {
     props: {

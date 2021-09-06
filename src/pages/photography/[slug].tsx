@@ -1,12 +1,13 @@
 import * as React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getPhotography } from '@api/index'
 import { getPaths } from '@api/photography-list'
 import { media, styled } from '@components/foundations'
 import { BasicLayout } from '@components/layout'
 import { Photography } from '@entities/index'
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import { PageTitle } from '@components/blocks'
+import { Level } from '@components/blocks/pageTitle'
+import Home from '@pages/index'
 
 interface Props {
   slug: string
@@ -15,32 +16,6 @@ interface Props {
 
 const Container = styled.div`
   background: ${p => p.theme.color.neutral['100']};
-`
-
-const Header = styled.div`
-  margin-bottom: ${p => p.theme.spacing(3)};
-
-  ${media.md} {
-    margin-bottom: ${p => p.theme.spacing(5)};
-  }
-`
-
-const Date = styled.span`
-  font-size: ${p => p.theme.font.size.sm};
-  color: ${p => p.theme.color.neutral['400']};
-
-  ${media.md} {
-    font-size: ${p => p.theme.font.size.rg};
-  }
-`
-
-const Title = styled.h1`
-  color: ${p => p.theme.color.neutral['500']};
-  font-size: ${p => p.theme.font.size.lg};
-
-  ${media.md} {
-    font-size: ${p => p.theme.font.size.xxl};
-  }
 `
 
 const Contents = styled.div`
@@ -66,57 +41,31 @@ const Img = styled.img`
   }
 `
 
-const Breadcrumb = styled.div`
-  margin-top: ${p => p.theme.spacing(1)};
-  font-size: ${p => p.theme.font.size.rg};
-
-  > *:not(:last-child) {
-    margin-right: ${p => p.theme.spacing(0.5)};
-  }
-
-  ${media.md} {
-    margin-top: ${p => p.theme.spacing(3)};
-
-    > *:not(:last-child) {
-      margin-right: ${p => p.theme.spacing(1)};
-    }
-  }
-`
-
-const Link = styled.a`
-  text-decoration: none;
-  color: ${p => p.theme.color.neutral['400']};
-  font-family: ${p => p.theme.font.family.brand};
-
-  ${media.md} {
-    font-size: ${p => p.theme.font.size.md};
-  }
-
-  &:hover {
-    color: ${p => p.theme.color.brand.primary};
-  }
-`
-
-const Icon = styled(FontAwesomeIcon)`
-  color: ${p => p.theme.color.neutral['400']};
-`
-
 const PhotographyPage = ({ slug, photography }: Props) => {
+  const levels: Level[] = [
+    {
+      label: 'Home',
+      level: '',
+    },
+    {
+      label: 'Photography',
+      level: 'photography',
+    },
+    {
+      label: photography.labelEn,
+      level: slug,
+    },
+  ]
+
   return (
     <Container>
       <BasicLayout>
         <Contents>
-          <Header>
-            <Date>{photography.date}</Date>
-            <Title>{photography.label}</Title>
-            <Breadcrumb>
-              <Link href={'/'}>Home</Link>
-              <Icon icon={faChevronRight} />
-              <Link href={'/photography'}> Photography</Link>
-              <Icon icon={faChevronRight} />
-              <Link href={'/photography/' + slug}>{photography.labelEn}</Link>
-            </Breadcrumb>
-          </Header>
+          <PageTitle
+            title={photography.label}
+            sub={photography.date}
+            levels={levels}
+          />
           <Images>
             {photography.resources.map((r, idx) => {
               return <Img alt={r} src={r} key={idx} />

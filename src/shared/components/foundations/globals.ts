@@ -64,21 +64,22 @@ img:not([alt]) {
   filter: blur(10px);
 }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: ${theme.color.neutral['100']};
-}
-
-::-webkit-scrollbar-thumb {
-  background: ${theme.color.neutral['200']};
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: ${theme.color.neutral['300']};
-}
+//
+// ::-webkit-scrollbar {
+//   width: 10px;
+// }
+//
+// ::-webkit-scrollbar-track {
+//   background: ${theme.color.neutral['100']};
+// }
+//
+// ::-webkit-scrollbar-thumb {
+//   background: ${theme.color.neutral['200']};
+// }
+//
+// ::-webkit-scrollbar-thumb:hover {
+//   background: ${theme.color.neutral['300']};
+// }
 
 ::-moz-selection {
   background: ${theme.color.neutral['200']};
