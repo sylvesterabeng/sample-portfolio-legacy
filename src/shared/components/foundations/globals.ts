@@ -26,9 +26,6 @@ dl,
 dd {
   margin: 0;
 }
-html. body {
-  height: 100%;
-}
 html {
   scroll-behavior: smooth;
   font-size: 14px;
@@ -37,6 +34,7 @@ html {
 }
 body {
   overflow: hidden;
+  overscroll-behavior: contain;
   text-rendering: optimizeSpeed;
   font-family: ${theme.font.family.base};
   line-height: 1.65;
