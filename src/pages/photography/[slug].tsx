@@ -19,9 +19,13 @@ const Container = styled.div`
 `
 
 const Contents = styled.div`
-  padding-top: ${p => p.theme.spacing(15)};
+  padding-top: ${p => p.theme.spacing(10)};
   max-width: 1280px;
   margin: 0 auto;
+
+  ${media.md} {
+    padding-top: ${p => p.theme.spacing(15)};
+  }
 `
 
 const Images = styled.div`
@@ -62,7 +66,7 @@ const PhotographyPage = ({ slug, photography }: Props) => {
       <BasicLayout>
         <Contents>
           <PageTitle
-            title={photography.label}
+            verb={photography.label}
             sub={photography.date}
             levels={levels}
           />

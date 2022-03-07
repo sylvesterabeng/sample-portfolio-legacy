@@ -2,6 +2,7 @@ import * as React from 'react'
 import { media, styled } from '@components/foundations'
 import { SectionWithScroller } from '@components/layout'
 import { Meta, SectionLabel } from '@entities/index'
+import Link from 'next/link'
 
 interface Props {
   photography: Meta[]
@@ -88,10 +89,12 @@ const Photography = ({ photography }: Props) => {
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
       {photography.map(s => (
-        <Slide key={s.labelEn} href={'photography/' + s.slug}>
-          <Img src={s.src} alt={s.labelEn} draggable="false" />
-          <Label>{s.label}</Label>
-        </Slide>
+        <Link key={s.labelEn} href={'photography/' + s.slug} passHref>
+          <Slide>
+            <Img src={s.src} alt={s.labelEn} draggable="false" />
+            <Label>{s.label}</Label>
+          </Slide>
+        </Link>
       ))}
     </SectionWithScroller>
   )

@@ -1,5 +1,5 @@
 const navItems = [
-  { idx: '01', name: 'Home', available: true, url: '', external: false },
+  { idx: '01', name: 'Home', available: true, url: '/', external: false },
   {
     idx: '02',
     name: 'Photography',

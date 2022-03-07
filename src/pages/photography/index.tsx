@@ -6,6 +6,7 @@ import { media, styled } from '@components/foundations'
 import { Meta } from '@entities/index'
 import { Level } from '@components/blocks/pageTitle'
 import { PageTitle } from '@components/blocks'
+import Link from 'next/link'
 
 interface Props {
   photography: Meta[]
@@ -19,17 +20,33 @@ const Contents = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  padding-top: ${p => p.theme.spacing(15)};
+  padding-top: ${p => p.theme.spacing(10)};
+
+  ${media.md} {
+    padding-top: ${p => p.theme.spacing(15)};
+  }
+`
+
+const Body = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const Slide = styled.a`
+  flex: 1;
   cursor: pointer;
   position: relative;
   margin-bottom: ${p => p.theme.spacing(5)};
+
+  ${media.md} {
+    margin-bottom: ${p => p.theme.spacing(8)};
+  }
 `
 
 const Img = styled.img`
   object-fit: cover;
+  width: 100%;
   border-radius: ${p => p.theme.shape.radius.sm};
 `
 
@@ -67,15 +84,24 @@ const PhotographyPage = ({ photography }: Props) => {
     <Container>
       <BasicLayout>
         <Contents>
-          <PageTitle title={'好きを撮る'} sub={'Photography'} levels={levels} />
-          {photography.map(p => {
-            return (
-              <Slide href={`photography/${p.slug}`} key={p.slug}>
-                <Img src={p.src} alt={p.labelEn} />
-                <Label>{p.label}</Label>
-              </Slide>
-            )
-          })}
+          <PageTitle
+            noun={'好き'}
+            verb={'を撮る'}
+            sub={'Photography'}
+            levels={levels}
+          />
+          <Body>
+            {photography.map(p => {
+              return (
+                <Link key={p.slug} href={`photography/${p.slug}`} passHref>
+                  <Slide>
+                    <Img src={p.src} alt={p.labelEn} />
+                    <Label>{p.label}</Label>
+                  </Slide>
+                </Link>
+              )
+            })}
+          </Body>
         </Contents>
       </BasicLayout>
     </Container>

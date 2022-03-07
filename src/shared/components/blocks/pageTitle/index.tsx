@@ -2,6 +2,7 @@ import * as React from 'react'
 import { media, styled } from '@components/foundations'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
+import Link from 'next/link'
 
 export interface Level {
   label: string
@@ -9,7 +10,8 @@ export interface Level {
 }
 
 interface props {
-  title: string
+  noun?: string
+  verb: string
   sub?: string
   levels: Level[]
 }
@@ -42,6 +44,11 @@ const Sub = styled.div`
     font-size: ${p => p.theme.font.size.rg};
   }
 `
+const Noun = styled.span`
+  color: ${p => p.theme.color.brand.primary};
+`
+
+const Verb = styled.span``
 
 const Title = styled.h1`
   color: ${p => p.theme.color.neutral['500']};
@@ -54,7 +61,7 @@ const Title = styled.h1`
   }
 `
 
-const Link = styled.a`
+const Anchor = styled.a`
   text-decoration: none;
   color: ${p => p.theme.color.neutral['400']};
   font-family: ${p => p.theme.font.family.brand};
@@ -87,17 +94,22 @@ const Item = styled.div`
   }
 `
 
-const PageTitle = ({ levels, sub, title }: props) => {
+const PageTitle = ({ levels, sub, noun, verb }: props) => {
   let path = ''
   return (
     <Container>
       <Sub>{sub}</Sub>
-      <Title>{title}</Title>
+      <Title>
+        <Noun>{noun}</Noun>
+        <Verb>{verb}</Verb>
+      </Title>
       <Breadcrumb>
         {levels.map((l, idx) => {
           return (
             <Item key={idx}>
-              <Link href={idx > 0 ? `${path}/${l.level}` : '/'}>{l.label}</Link>
+              <Link href={idx > 0 ? `${path}/${l.level}` : '/'} passHref>
+                <Anchor>{l.label}</Anchor>
+              </Link>
               {idx !== levels.length - 1 && <Icon icon={faChevronRight} />}
             </Item>
           )

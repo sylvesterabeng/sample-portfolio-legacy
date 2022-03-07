@@ -5,6 +5,7 @@ import { media, styled } from '@components/foundations'
 import { MenuScreen } from '@components/blocks'
 import { FunctionComponent } from 'react'
 import { basicPadding } from '@components/layout/basicLayout'
+import { useRouter } from 'next/router'
 
 const Container = styled.div`
   width: 100%;
@@ -47,6 +48,7 @@ const Button = styled.span`
 const Logo = styled(Button)`
   height: 26px;
   width: 21px;
+  display: block;
   background-image: url('/images/logo.svg');
 `
 
@@ -64,10 +66,15 @@ const Close = styled(Button)`
 
 const Header: FunctionComponent = () => {
   const [menuIsOpened, setMenuIsOpened] = React.useState(false)
+  const router = useRouter()
 
   const handleMenuClick = () => {
     setMenuIsOpened(!menuIsOpened)
   }
+
+  React.useEffect(() => {
+    setMenuIsOpened(false)
+  }, [router])
 
   return (
     <>
