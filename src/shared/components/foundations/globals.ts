@@ -31,10 +31,10 @@ html {
   font-size: 14px;
   background: ${theme.color.neutral['100']};
   overflow-y: scroll;
+  overscroll-behavior: contain;
 }
 body {
   overflow: hidden;
-  overscroll-behavior: contain;
   text-rendering: optimizeSpeed;
   font-family: ${theme.font.family.base};
   line-height: 1.65;
