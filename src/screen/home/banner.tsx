@@ -186,7 +186,7 @@ const ImgWrap = styled.div`
 `
 
 const Img = styled.img`
-  height: 50vmax;
+  height: 50vh;
   width: 100vw;
   user-select: none;
   object-fit: cover;
@@ -195,7 +195,7 @@ const Img = styled.img`
   border-radius: ${p => p.theme.shape.radius.sm};
 
   ${media.lg} {
-    height: 80vmax;
+    height: 80vh;
   }
 `
 
