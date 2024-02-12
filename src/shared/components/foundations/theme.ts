@@ -66,6 +66,9 @@ export interface ITheme {
       base: string
     }
   }
+  dimension: {
+    contents: string
+  }
 }
 
 const SPACE_UNIT = 8
@@ -142,6 +145,9 @@ export const theme: ITheme = {
       brand: `${brandFontFamily}`,
       base: `${primaryFontFamily}`,
     },
+  },
+  dimension: {
+    contents: '1440px',
   },
 }
 

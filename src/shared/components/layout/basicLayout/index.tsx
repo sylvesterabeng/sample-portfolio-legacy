@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { media, styled } from '@components/foundations'
+import { css, media, styled } from '@components/foundations'
 import { FunctionComponent } from 'react'
 
-const Container = styled.div`
+export const basicPadding = css`
   padding: ${p => p.theme.spacing(0, 3)};
 
   ${media.lg} {
@@ -11,6 +11,15 @@ const Container = styled.div`
 
   ${media.xl} {
     padding: ${p => p.theme.spacing(0, 8)};
+  }
+`
+
+const Container = styled.div`
+  ${basicPadding}
+
+  ${media.xl} {
+    max-width: ${p => p.theme.dimension.contents};
+    margin: 0 auto;
   }
 `
 

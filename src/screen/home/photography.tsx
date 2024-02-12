@@ -1,23 +1,19 @@
 import * as React from 'react'
 import { media, styled } from '@components/foundations'
-import { FunctionComponent } from 'react'
 import { SectionWithScroller } from '@components/layout'
-import { SectionLabel } from '@entities/index'
-import { photographySlides } from '@data/index'
+import { Meta, SectionLabel } from '@entities/index'
+import Link from 'next/link'
 
-const ImgCover = styled.div`
-  width: 100%;
-  height: 100%;
-  opacity: 0.2;
-  position: absolute;
-  background-color: ${p => p.theme.color.black};
-`
+interface Props {
+  photography: Meta[]
+}
 
 const Img = styled.img`
   width: 75vw;
   height: 100%;
   max-width: 1024px;
   object-fit: cover;
+  border-radius: ${p => p.theme.shape.radius.sm};
 `
 
 const Label = styled.span`
@@ -39,12 +35,12 @@ const Label = styled.span`
   }
 `
 
-const Slide = styled.div`
+const Slide = styled.a`
   display: flex;
   position: relative;
   margin-right: 8vw;
   justify-content: center;
-  cursor: not-allowed;
+  cursor: pointer;
 
   :nth-child(4n + 1) {
     ${Label} {
@@ -83,7 +79,7 @@ const Slide = styled.div`
   }
 `
 
-const Photography: FunctionComponent = () => {
+const Photography = ({ photography }: Props) => {
   const sectionLabel: SectionLabel = {
     simple: 'Photography',
     noun: '好き',
@@ -92,12 +88,13 @@ const Photography: FunctionComponent = () => {
 
   return (
     <SectionWithScroller sectionLabel={sectionLabel}>
-      {photographySlides.map((s, idx) => (
-        <Slide key={idx}>
-          <ImgCover />
-          <Img src={s.src} alt={s.name} draggable="false" />
-          <Label>{s.label}</Label>
-        </Slide>
+      {photography.map(s => (
+        <Link key={s.labelEn} href={'photography/' + s.slug} passHref>
+          <Slide>
+            <Img src={s.src} alt={s.labelEn} draggable="false" />
+            <Label>{s.label}</Label>
+          </Slide>
+        </Link>
       ))}
     </SectionWithScroller>
   )

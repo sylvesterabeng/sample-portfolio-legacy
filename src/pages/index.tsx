@@ -1,20 +1,22 @@
 import React from 'react'
 import { GetStaticProps } from 'next'
+import { getPhotographyList } from '@api/index'
+import { Meta } from '@entities/index'
 import HomeScreen from '../screen/home'
 
-const Home = () => {
-  return <HomeScreen />
+interface Props {
+  photography: Meta[]
+}
+
+const Home = ({ photography }: Props) => {
+  return <HomeScreen photography={photography} />
 }
 
 export const getStaticProps: GetStaticProps = async context => {
-  // const cultures = await getCultureWords()
-  // const workSummary = await getWorks()
-  // const clients = await getClient()
+  const photography = await getPhotographyList()
   return {
     props: {
-      // cultures,
-      // workSummary,
-      // clients,
+      photography,
     },
   }
 }

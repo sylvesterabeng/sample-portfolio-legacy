@@ -1,12 +1,15 @@
 import * as React from 'react'
+import { NextSeo } from 'next-seo'
 import { styled } from '@components/foundations'
-import { Header } from '@components/blocks'
+import { BasicLayout } from '@components/layout'
+import { Meta } from '@entities/index'
 import Banner from './banner'
 import Introduction from './introduction'
 import Photography from './photography'
-import { FunctionComponent } from 'react'
-import { BasicLayout } from '@components/layout'
-import { NextSeo } from 'next-seo'
+
+interface Props {
+  photography: Meta[]
+}
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +17,7 @@ const Container = styled.div`
   background: ${p => p.theme.color.neutral['100']};
 `
 
-const HomeScreen: FunctionComponent = () => {
+const HomeScreen = ({ photography }: Props) => {
   return (
     <>
       <NextSeo
@@ -34,12 +37,11 @@ const HomeScreen: FunctionComponent = () => {
         }}
       />
       <Container>
-        <Header />
         <BasicLayout>
           <Banner />
           <Introduction />
         </BasicLayout>
-        <Photography />
+        <Photography photography={photography} />
       </Container>
     </>
   )

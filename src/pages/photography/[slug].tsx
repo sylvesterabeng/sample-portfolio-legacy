@@ -1,23 +1,83 @@
 import * as React from 'react'
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { getPhotographyResources } from '@api/index'
-import { getPaths } from '@api/photography'
+import { getPhotography } from '@api/index'
+import { getPaths } from '@api/photography-list'
+import { media, styled } from '@components/foundations'
+import { BasicLayout } from '@components/layout'
+import { Photography } from '@entities/index'
+import { PageTitle } from '@components/blocks'
+import { Level } from '@components/blocks/pageTitle'
+import Home from '@pages/index'
 
 interface Props {
-  resources: string[]
   slug: string
+  photography: Photography
 }
 
-const PhotographyPage = ({ resources, slug }: Props) => {
+const Container = styled.div`
+  background: ${p => p.theme.color.neutral['100']};
+`
+
+const Contents = styled.div`
+  padding-top: ${p => p.theme.spacing(10)};
+  max-width: 1280px;
+  margin: 0 auto;
+
+  ${media.md} {
+    padding-top: ${p => p.theme.spacing(15)};
+  }
+`
+
+const Images = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+const Img = styled.img`
+  user-select: none;
+  pointer-events: none;
+  margin-bottom: ${p => p.theme.spacing(1)};
+  border-radius: ${p => p.theme.shape.radius.sm};
+
+  ${media.md} {
+    margin-bottom: ${p => p.theme.spacing(2)};
+  }
+`
+
+const PhotographyPage = ({ slug, photography }: Props) => {
+  const levels: Level[] = [
+    {
+      label: 'Home',
+      level: '',
+    },
+    {
+      label: 'Photography',
+      level: 'photography',
+    },
+    {
+      label: photography.labelEn,
+      level: slug,
+    },
+  ]
+
   return (
-    <>
-      <h1>{slug}</h1>
-      <div>
-        {resources.map((r, idx) => {
-          return <img alt={r} src={r} key={idx} width={'400px'} />
-        })}
-      </div>
-    </>
+    <Container>
+      <BasicLayout>
+        <Contents>
+          <PageTitle
+            verb={photography.label}
+            sub={photography.date}
+            levels={levels}
+          />
+          <Images>
+            {photography.resources.map((r, idx) => {
+              return <Img alt={r} src={r} key={idx} />
+            })}
+          </Images>
+        </Contents>
+      </BasicLayout>
+    </Container>
   )
 }
 
@@ -31,11 +91,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async context => {
   const { slug } = context.params
-  const resources = await getPhotographyResources(slug as string)
+  const photography = await getPhotography(slug as string)
   return {
     props: {
-      resources,
       slug,
+      photography,
     },
   }
 }

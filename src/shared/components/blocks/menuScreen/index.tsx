@@ -3,10 +3,7 @@ import { FunctionComponent } from 'react'
 import { media, styled, theme } from '@components/foundations'
 import { Socials } from '@components/blocks'
 import { navItems } from '@data/index'
-
-interface NavProps {
-  comingSoon: boolean
-}
+import Link from 'next/link'
 
 const Container = styled.div`
   width: 100%;
@@ -32,28 +29,31 @@ const NavIndex = styled.span`
 
 const NavItem = styled.span``
 
-const Nav = styled.a`
+const Nav = styled.span<{ comingSoon: boolean }>`
   font-size: ${p => p.theme.font.size.xxl};
-  color: ${(p: NavProps) =>
-    p.comingSoon ? theme.color.neutral['200'] : theme.color.neutral['500']};
-  transition: color 300ms cubic-bezier(0.2, 0, 0, 1);
-  font-family: ${p => p.theme.font.family.brand};
-  cursor: ${(p: NavProps) => (p.comingSoon ? 'not-allowed' : 'pointer')};
-  display: flex;
-  text-decoration: none;
 
-  ::after {
-    content: '※Coming Soon';
-    display: ${(p: NavProps) => (p.comingSoon ? 'block' : 'none')};
-    margin-top: ${p => p.theme.spacing(2)};
-    margin-left: ${p => p.theme.spacing(1)};
-    font-size: ${p => p.theme.font.size.rg};
-    align-self: center;
-    color: ${p => p.theme.color.brand.primary};
-  }
+  a {
+    color: ${p =>
+      p.comingSoon ? theme.color.neutral['200'] : theme.color.neutral['500']};
+    text-decoration: none;
+    cursor: ${p => (p.comingSoon ? 'not-allowed' : 'pointer')};
+    transition: color 300ms cubic-bezier(0.2, 0, 0, 1);
+    font-family: ${p => p.theme.font.family.brand};
+    display: flex;
 
-  :hover {
-    color: ${(p: NavProps) => (p.comingSoon ? '' : theme.color.brand.primary)};
+    :hover {
+      color: ${p => (p.comingSoon ? '' : theme.color.brand.primary)};
+    }
+
+    ::after {
+      content: '※Coming Soon';
+      display: ${p => (p.comingSoon ? 'block' : 'none')};
+      margin-top: ${p => p.theme.spacing(2)};
+      margin-left: ${p => p.theme.spacing(1)};
+      font-size: ${p => p.theme.font.size.rg};
+      align-self: center;
+      color: ${p => p.theme.color.brand.primary};
+    }
   }
 
   ${NavItem} +  ${NavItem} {
@@ -70,14 +70,13 @@ const Menu: FunctionComponent = () => {
     <Container>
       <NavWrap>
         {navItems.map(({ idx, name, available, url, external }) => (
-          <Nav
-            key={idx}
-            comingSoon={!available}
-            href={available ? url : 'javascript:void(0)'}
-            target={external ? '_blank' : '_self'}
-          >
-            <NavIndex>{idx}</NavIndex>
-            <NavItem>{name}</NavItem>
+          <Nav key={idx} comingSoon={!available}>
+            <Link href={url} key={idx}>
+              <a target={external ? '_blank' : '_self'}>
+                <NavIndex>{idx}</NavIndex>
+                <NavItem>{name}</NavItem>
+              </a>
+            </Link>
           </Nav>
         ))}
       </NavWrap>
